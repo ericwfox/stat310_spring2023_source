@@ -1,0 +1,185 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{url}
+
+\begin{document}
+
+\begin{frame}
+\large
+Lecture 13:\\
+Inference for Simple Linear Regression\\
+STAT 310, Spring 2023
+\end{frame}
+
+%---------------------------
+\begin{frame}{Review of Key Terms}
+\begin{itemize}
+\item A \textbf{parameter} is a numerical characteristic of the population
+(fixed number, that is usually unknown).  
+\begin{itemize}
+\item For example, the population mean height $\mu$ of all students at CSUEB.
+\end{itemize}
+\vspace{10pt}
+\item A \textbf{statistic} is a numerical characteristic of the sample (varies depending on sample).  The statistic is also referred to as a \textbf{point estimate}, since it is our best guess at the value of a population parameter.
+\begin{itemize}
+\item For example, the sample mean height $\bar{x}$ of $n=100$ randomly selected CSUEB students.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%---------------------------
+\begin{frame}{Review of Key Terms}
+\textbf{Statistical inference} refers to the process of using data collected from a sample to answer questions about population parameters.
+\vspace{5pt}
+\begin{itemize}
+\item \textbf{Standard error (SE)}: measures the variability of a statistic (or point estimate) from sample to sample.  
+\vspace{5pt}
+\item \textbf{Confidence interval}: a plausible range of values for the population parameter.
+\vspace{5pt}
+\item \textbf{Hypothesis test}: Do the sample data provide convincing evidence that the population parameter is different than some value?
+\end{itemize}
+\end{frame}
+
+%---------------------------
+\begin{frame}{Inference for Linear Regression}
+\textbf{Simple linear regression model for the population}:\\
+$$ y = \beta_0 + \beta_1 x + \epsilon $$\\
+$\beta_0$ and $\beta_1$ are the population parameters. We can refer to $\beta_0$ as the \emph{population intercept} and  $\beta_1$ as the \emph{population slope}.\\
+\vspace{25pt}
+
+\textbf{Least squares regression line}:\\
+$$ \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x $$\\
+$\hat{\beta}_0$ and $\hat{\beta}_1$ are the estimates of the slope and intercept, obtained from a random sample of data.\\
+\end{frame}
+
+%---------------------------
+\begin{frame}
+\end{frame}
+
+%---------------------------
+\begin{frame}
+%\vspace{-1cm}
+Confidence interval for the population slope $\beta_1$:
+$$\hat{\beta}_1 \pm t^* SE_{\hat{\beta}_1}$$
+
+\begin{itemize}
+\item $\hat{\beta}_1$ is the point estimate 
+\item $t^*$ is the t-critical value, which depends on the confidence level and has $n-2$ degrees of freedom
+\item $SE_{\hat{\beta}_1}$ is the standard error of the slope estimate 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+%\vspace{-1cm}
+Hypothesis test for whether the population slope $\beta_1$ is different than zero.  We can also interpret this as a hypothesis test for whether there is a linear association between $x$ and $y$.\\
+\vspace{10pt}
+$H_0: \beta_1 = 0$\\
+\vspace{5pt}
+$H_A: \beta_1 \neq 0$\\
+\vspace{10pt}
+Test statistic:\\
+$$t = \frac{\hat{\beta}_1}{SE_{\hat{\beta}_1}}; \quad \text{df} =n-2$$\\
+\vspace{10pt}
+
+The test statistic is then used to compute the $p$-value.  When using the default significance level ($\alpha = 0.05$), we would reject $H_0$ when the $p$-value $<0.05$.
+\end{frame}
+
+\begin{frame}[fragile]{Example}
+Let's go back to the example of using a student's high school GPA ($x$) to predict their college GPA ($y$).  Shown below is a scatter plot of the data, and the output from fitting this linear regression model in R.
+
+\scriptsize
+\begin{verbatim}
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   0.2168     0.3250   0.667    0.506    
+hs_gpa        0.7091     0.1003   7.069 5.73e-11 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+\end{verbatim}
+
+\includegraphics[scale=0.3]{figure/gpa_scatter_line.pdf}
+\end{frame}
+
+\begin{frame}{Example}
+(a) Do the data provide strong evidence of a linear association between high school GPA and first-year college GPA?  State the null and alternative hypothesis, report the test statistic and $p$-value, and state your conclusion.
+\vspace{5cm}
+\end{frame}
+
+\begin{frame}{Example}
+(b) Calculate a 95\% confidence interval for the slope parameter $\beta_1$.  Note that there are $n=150$ students in this data set.\\
+\includegraphics[scale = 0.4]{figure/norm_draw.pdf}
+\vspace{4cm}
+\end{frame}
+
+%------------------------------------------------------
+\begin{frame}{Conditions for Simple Linear Regression}
+
+\begin{itemize}
+\item \textbf{Linearity}.  The data should follow a linear trend.
+\vspace{5pt}
+\item \textbf{Constant variability}.  The variability of the points around the least squares line remains roughly constant.
+\vspace{5pt}
+\item \textbf{Normality}.  The residuals should be approximately normally distributed with mean 0.
+\vspace{5pt}
+\item \textbf{Independence}.  Values of the response variable are independent of each other. This is  satisfied when the data come from a random sample.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Residual Plots}
+\begin{itemize}
+\item One useful way to check the conditions is to look at a plot of the residuals, $\hat{e}_i = y_i - \hat{y}_i$, versus the predictor, $x_i$.
+\vspace{5pt}
+\item One purpose of residual plots is to identify characteristics or patterns still apparent in the data after fitting the model.
+\vspace{5pt}
+\item Residual plots are especially useful for checking the constant variability condition.
+\vspace{5pt}
+\item Ideally, the residual plot should show no obvious pattern, and the points are randomly scattered around 0.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example: Residual Plot}
+For the simple linear regression model between high school and first-year college GPA, the points in the residual plot look randomly scattered around the horizontal line at 0.  This indicates that the condition of constant variability is met.
+\begin{figure}
+\includegraphics[scale=0.5]{figure/gpa_resid.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Example: Normality of Residuals}
+To check whether the the residuals are normally distributed we can make a histogram.  The histogram should be symmetric about 0 and have an approximate bell-curve shape.  For the GPA example, the residuals appear to have an approximate normal distribution, and there are no outliers.
+\begin{figure}
+\includegraphics[scale=0.5]{figure/hist_resid.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Example: Nonconstant variability}
+An example of a violation of the constant variability condition. This residual plot shows a \textbf{fan pattern}.
+\begin{figure}
+\includegraphics[scale=0.65]{figure/resid_var.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Example: Nonlinearity}
+An example of a violation of the linearity condition.
+\begin{figure}
+\includegraphics[scale=0.65]{figure/resid_nonlin.pdf}
+\end{figure}
+\end{frame}
+
+% \begin{frame}[fragile]{Example: Slope Not Significant}
+% In case you are wondering, here is an example of a scatterplot where the slope $\beta_1$ of the regression line is \textbf{not} significantly different than 0.  As you can see, there does not appear to be a linear association between $x$ and $y$.  
+% \small
+% \begin{verbatim}
+% Coefficients:
+%             Estimate Std. Error t value Pr(>|t|)
+% (Intercept)  0.01145    0.07929   0.144    0.885
+% x           -0.10537    0.07807  -1.350    0.180
+% \end{verbatim}
+% \begin{figure}
+% \includegraphics[scale=0.4]{figure/scatter_slope_zero.pdf}
+% \end{figure}08
+% \end{frame}
+
+\end{document}

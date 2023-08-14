@@ -1,0 +1,336 @@
+\documentclass[fleqn, 10pt]{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{enumerate}
+
+% some latex magic for correcting apostrophe issue in verbatim mode
+\makeatletter
+\let \@sverbatim \@verbatim
+\def \@verbatim {\@sverbatim \verbatimplus}
+{\catcode`'=13 \gdef \verbatimplus{\catcode`'=13 \chardef '=13 }} 
+\makeatother
+
+\begin{document}
+
+%---------------------------------------------
+\begin{frame}
+\large
+Lecture 9:\\
+Confidence Interval for One Mean\\
+STAT 310, Spring 2023
+\normalsize
+\end{frame}
+
+%---------------------------------------------
+% \begin{frame}{Introduction}
+% \begin{itemize}
+% \item Similar to how we can model the sample proportion $\hat{p}$ using a normal distribution, the sample mean $\bar{x}$ can also be modeled using a normal distribution when certain conditions are met.
+% \vspace{5pt}
+% \item However, we'll learn that a new distribution, called the $t$-distribution, tends to be more useful when working with the sample mean.
+% \vspace{5pt}
+% \item In this lecture we'll first learn about this new distribution, and then use it to construct confidence intervals for the mean.
+% \end{itemize}
+% \end{frame}
+
+%---------------------------------------------
+\begin{frame}{Warm-up Question}
+As part of the General Social Survey, a random sample of 300 Americans were asked how many hours per day they spend watching television.  The average for these respondents was 2.9 hours.
+\begin{enumerate}[(a)]
+\item What is the sample size?\\
+\vspace{0.75cm}
+\item What is the sample mean?\\
+\vspace{0.75cm}
+\item Describe the population mean.
+\vspace{1.5cm}
+\item Suppose another survey is conducted with a different random sample of 300 Americans.  Would you expect the sample mean to the same or slightly different?
+\vspace{0.75cm}
+\end{enumerate}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Review of Key Terms}
+\begin{itemize}
+\item A \textbf{parameter} is a numerical characteristic of the population
+(fixed number, that is usually unknown).
+\vspace{5pt}
+\item A \textbf{statistic} is a numerical characteristic of the sample (varies depending on sample).  The statistic is also sometimes referred to as a \textbf{point estimate}, since it is our best guess at the value of a population parameter.
+\vspace{5pt}
+\item The \textbf{standard error} (SE)  measures the variability of a statistic from sample to sample. 
+\vspace{5pt}
+\item A \textbf{confidence interval} gives a range of plausible values for the population parameter.  The half-width of a confidence interval is called the \textbf{margin of error}.
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Notation}
+Some notation for common parameters and statistics:\\
+
+\vspace{10pt}
+\begin{tabular}{|l|l|l|}
+\hline
+& parameter & statistic\\
+\hline
+proportion & $p$ & $\hat{p}$\\
+mean & $\mu$ & $\bar{x}$\\
+standard deviation & $\sigma$ & s\\
+\hline
+\end{tabular}
+\end{frame}
+
+
+
+%---------------------------------------------
+\begin{frame}{Central Limit Theorem (CLT) for the Mean}
+% \vspace{-2.5cm}
+Suppose we repeatedly take random samples of the same size $n$ from a population, and then compute the sample mean from each.  Then if the sample size $n$ is sufficiently large (usually $n>30$), the distribution of the sample means follows an approximate normal distribution centered around the population mean $\mu$, and with standard error $SE = \sigma / \sqrt{n}$. We can express this succinctly using the following notation:
+
+\large
+$$\bar{X} \sim N\left(\mu, \frac{\sigma}{\sqrt{n}} \right)$$
+
+\normalsize
+\vspace{10pt}
+Here the symbol $\sim$ translates to the word ``follows."
+
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]{Using Simulation to Verify the CLT}
+We can conduct a simulation in R to verify the CLT.  As our population we'll consider the salaries (in thousands of dollars) of all San Francisco (SF) city employees from the year 2017.  This data is publicly available on the internet.\footnote{\tiny \url{https://data.sfgov.org/City-Management-and-Ethics/Employee-Compensation/88g8-5mnd}}  
+
+\scriptsize
+\begin{verbatim}
+# load salary data 
+> Salaries = readRDS(url("https://ericwfox.github.io/data/Salaries.rds"))
+\end{verbatim}
+
+\small
+\begin{verbatim}
+# population size (number of SF city employees)
+> length(Salaries) 
+[1] 45693
+
+# population mean 
+> mu = mean(Salaries)
+> mu
+[1] 67.06238
+
+# population standard deviation 
+> sigma = sd(Salaries)
+> sigma
+[1] 47.58665
+\end{verbatim}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]
+Below is a histogram of the salaries of all SF city employees.  This is the \emph{population distribution}, which we can see is right skewed.
+
+\begin{verbatim}
+> hist(Salaries, xlab = "Salary (in thousands)", main = "")
+\end{verbatim}
+
+\includegraphics[scale = 0.5]{figure/salary_dist.pdf}
+
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]
+Below is code for taking a random sample of $n=50$ salaries of city employees, and then comping mean.
+\begin{verbatim}
+> samp1 = sample(Salaries, size = 50)
+> mean(samp1)
+[1] 73.92442
+\end{verbatim}
+
+If we take another random sample of $n=50$ salaries, we get a different sample mean.
+\begin{verbatim}
+> samp2 = sample(Salaries, size = 50)
+> mean(samp2)
+[1] 48.20304
+\end{verbatim}
+
+Also note that the sample means estimate the population mean ($\mu = 67.062$ thousand dollars) with some error.  For instance, here the first sample mean is an overestimate, and the second sample mean is an underestimate.
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]
+To construct a \emph{sampling distribution} we repeatedly take random samples from the population, and compute the sample mean from each.  To do this in R, we can use the \texttt{replicate()} function:
+
+\begin{verbatim}
+xbars = replicate(10000, {
+  samp = sample(Salaries, size = 50)
+  mean(samp)
+})
+\end{verbatim}
+
+The code above takes 10,000 random samples of $n=50$ salaries from the population, and computes the mean salary of each sample.  The 10,000 sample means are stored in the vector \texttt{xbars}.
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]
+\small
+A histogram of the 10,000 sample means is plotted below (this is our sampling distribution for $\bar{x}$).  Remarkably, we see that the histogram looks normally distributed, and centered around the population mean (red vertical line).  This is exactly what the CLT says the sampling distribution should look like.
+
+\begin{verbatim}
+> hist(xbars, xlab = "Sample mean salary (in thousands)", main = "")
+# plot vertical line at population mean
+> abline(v = mu, col = "red", lwd = 2)
+\end{verbatim}
+
+\includegraphics[scale = 0.4]{figure/sampling_dist.pdf}
+
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]
+The standard error (SE) is given by the standard deviation of the 10,000 sample means.
+\begin{verbatim}
+> sd(xbars)
+[1] 6.737655
+\end{verbatim}
+This is approximately the same value we get when we use the formula $SE = \sigma / \sqrt{n}$ from the CLT.
+\begin{verbatim}
+> sigma / sqrt(50)
+[1] 6.729768
+\end{verbatim}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+Remarks:
+\begin{itemize}
+\item Note that even though the population distribution for salary is skewed right, the distribution of the sample means is normal.  This is true in general - according to the CLT, as long as the sample size is large (usually $n>30$), the sampling distribution will be approximately normal, regardless of the shape of the population distribution.
+\item  In applications, we usually work with a single random sample of data, and therefore can't plot a histogram of the sampling distribution like we did in the simulation.  However, because of the CLT we can still \emph{assume} that the sampling distribution is approximately normal when certain conditions are met.
+\item The primary application of the CLT is to make inferences for population parameters by constructing confidence intervals or performing hypothesis tests. These methods only require a single random sample of data.
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Confidence Interval for $\mu$}
+\begin{itemize}
+\item Based on the CLT, we can construct a 95\% confidence interval for the population mean $\mu$ as
+$$\bar{x} \pm z^* SE \implies \bar{x} \pm 1.96 \frac{\sigma}{\sqrt{n}}$$
+\item However, one issue with this confidence interval formula is that the standard error is in terms of the population standard deviation $\sigma$, which is unknown.
+\item We can resolve this by plugging in the sample standard deviation $s$ as the estimate of $\sigma$.  That is, use $SE \approx s / \sqrt{n}$.  
+\item This is a sensible approach when the sample size is large.  But when the sample size is small, the confidence interval needs to be adjusted to account for additional uncertainty in estimating $\sigma$ with $s$. 
+\item It turns out that we can get a more accurate confidence interval, which accounts for this additional uncertainty, by using the $t$-distribution to calculate the critical value instead of the $z$-distribution.
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{t-disribution}
+\begin{itemize}
+\item A $t$-distribution is bell-curve shaped distribution that is centered around zero.
+\vspace{5pt}
+\item It looks similar to a standard normal distribution, but it has wider tails.
+\end{itemize}
+\begin{figure}
+\includegraphics[scale = 0.6]{figure/tDistCompareToNormalDist.pdf}
+\end{figure}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{t-disribution}
+\begin{itemize}
+\item The shape of the $t$-distribution depends on the degrees of freedom, which is defined as $df = n-1$
+\item When the sample size is small the $t$-distrubiton has noticeably wider tails than a normal distribution.
+\item When the sample size is large (about 30 or more), the $t$-distribution is close to a normal distribution.
+\end{itemize}
+\begin{figure}
+\includegraphics[scale = 0.5]{figure/tDistConvergeToNormalDist.pdf}
+\end{figure}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Confidence Interval for $\mu$}
+A confidence interval for the the population mean $\mu$ is given by 
+$$\bar{x} \pm t^* \frac{s}{\sqrt{n}}$$\\
+\vspace{0.75cm}
+
+The critical value $t^*$ is found using $t$-distribution.  It depends on the confidence level and degrees of freedom, and can be computed using the R function \texttt{qt()}.\\
+
+\vspace{0.5cm}
+\emph{Example}: Calculate the critical value $t^*$ when the confidence level is $95\%$ and $n=15$.\\
+\includegraphics[scale = 0.35]{figure/norm_draw.pdf}
+\vspace{1cm}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Conditions}
+The confidence interval for $\mu$ is valid if the following conditions are satisfied:
+\vspace{5pt}
+\begin{itemize}
+\item The data come from a random sample.  (This is called the \textbf{independence condition} in the textbook.)
+\vspace{5pt}
+\item The sample size $n$ is large ($n \geq 30$).  Otherwise, if the sample size is small ($n < 30$), the data should have an approximate normal distribution. (This is called the \textbf{normality condition} in the textbook.)
+% \vspace{5pt}
+% \item Additionally, the data should not contain any extreme outliers.
+\end{itemize}
+\vspace{5pt}
+These conditions ensure that the CLT holds.  For small sample sizes ($n<30$), look at histogram of the data to check normality.  
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+As part of a survey conducted by the US National Center for Health Statistics, a random sample of $n=40$ Americans were asked how many hours of sleep they get on a typical weekday.  Some summary statistics and a histogram of this data are shown below.  
+
+\begin{table}[ht]
+\begin{tabular}{lllll}
+\hline
+n & $\bar{x}$ & s & min & max\\
+\hline
+40 & 6.8 & 1.4 & 4 & 10
+\end{tabular}
+\end{table}
+\vspace{-0.5cm}
+\begin{figure}
+\includegraphics[scale=0.5]{figure/sleep_hist.pdf}
+\end{figure}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\begin{enumerate}[(a)]
+\item Calculate and interpret a 95\% confidence interval for the population mean.\\ 
+\includegraphics[scale = 0.4]{figure/norm_draw.pdf}
+\vspace{3cm}
+\item Comment on whether the conditions for the confidence interval appear satisfied.
+\vspace{2cm}
+\end{enumerate}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+\vspace{-3cm}
+Calculate a 90\% confidence interval for the population mean number of hours of sleep Americans get on a typical weekday.\\
+\includegraphics[scale = 0.4]{figure/norm_draw.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example: Checking the Conditions}
+\vspace{-1cm}
+Consider the following histogram of a random sample of size $n=15$.  We want to use this data to calculate a confidence interval for the population mean.  Comment on whether you think the conditions for the confidence interval are satisfied.\\     
+\includegraphics[scale=0.4]{figure/hist1.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example: Checking the Conditions}
+\vspace{-1cm}
+Consider the following histogram of a random sample of size $n=20$.  We want to use this data to calculate a confidence interval for the population mean.  Comment on whether you think the conditions for the confidence interval are satisfied. \\  
+\includegraphics[scale=0.4]{figure/hist2.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example: Checking the Conditions}
+\vspace{-1cm}
+Consider the following histogram of a random sample of size $n=200$.  We want to use this data to calculate a confidence interval for the population mean.  Comment on whether you think the conditions for the confidence interval are satisfied.\\   
+\includegraphics[scale=0.4]{figure/hist3.pdf}
+\end{frame}
+
+
+
+\end{document}

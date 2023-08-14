@@ -1,0 +1,217 @@
+\documentclass[10pt]{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xcolor}
+
+% some latex magic for correcting apostrophe issue in verbatim mode
+\makeatletter
+\let \@sverbatim \@verbatim
+\def \@verbatim {\@sverbatim \verbatimplus}
+{\catcode`'=13 \gdef \verbatimplus{\catcode`'=13 \chardef '=13 }} 
+\makeatother
+
+\begin{document}
+
+%---------------------------------------------
+\begin{frame}
+\large
+Lecture 4:\\
+Summarizing and Displaying Categorical Data\\
+STAT 310, Spring 2023
+\normalsize
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Frequency Tables and Bar Plots}
+\begin{itemize}
+\item Recall that a \textbf{categorical variable} takes on values that fall into distinct categories.  For example, gender, education level, and marital status are categorical variables.
+\vspace{10pt}
+\item A \textbf{frequency table} summarizes data for a single categorical variable.  It shows the \emph{counts} for each category.
+\vspace{10pt}
+\item A \textbf{bar plot} is a common way of visualizing the distribution of a single categorical variable.
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]{Frequency Tables and Bar Plots}
+
+\small
+A frequency table and bar plot for the categorical variable \texttt{HealthGen} (self reported health rating), from the \texttt{nhanes} data set (discussed in lab 2).  
+
+\begin{verbatim}
+> table(nhanes$HealthGen)
+Excellent     Vgood      Good      Fair      Poor 
+      172       470       610       213        35 
+      
+> barplot(table(nhanes$HealthGen), 
+   xlab = "General Health", ylab = "Count")
+\end{verbatim}
+\includegraphics[scale = 0.5]{figure/barplot_healthgen.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]{Relative Frequency Table}
+A \textbf{relative frequency table} shows the \emph{proportions}, instead of counts, for each category.
+
+\begin{verbatim}
+> dim(nhanes)
+[1] 1500   11
+
+> table(nhanes$HealthGen) / 1500
+Excellent     Vgood      Good      Fair      Poor 
+    0.115     0.313     0.407     0.142     0.023
+\end{verbatim}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]{Contingency Tables}
+A \textbf{contingency table} summarizes data for two categorical variables.  Each value in the table represents the number of times a particular combination of variable outcomes occurred.  For example, below is a contingency table between the variables \texttt{PhysActive} and \texttt{HealthGen}.\footnote{The variable \texttt{PhysActive} indicates whether the respondent does moderate or vigorous-intensity sports, fitness or recreational activities (No / Yes).}
+
+\begin{verbatim}
+> table(nhanes$PhysActive, nhanes$HealthGen)
+     
+      Excellent Vgood Good Fair Poor
+  No         48   169  279  150   31
+  Yes       124   301  331   63    4
+\end{verbatim}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]{Contingency Tables}
+% \vspace{-0.25cm}
+\begin{verbatim}
+# include row and column totals  
+> addmargins(table(nhanes$PhysActive, nhanes$HealthGen))
+
+      Excellent Vgood Good Fair Poor  Sum
+  No         48   169  279  150   31  677
+  Yes       124   301  331   63    4  823
+  Sum       172   470  610  213   35 1500
+\end{verbatim}
+
+\begin{itemize}
+\item What proportion of respondents reported being in excellent health?\\
+% \vspace{0.75cm}
+{\color{blue}$172 / 1500 = 0.115$}
+\medskip
+
+\item What proportion of respondents reported being physically active?\\
+% \vspace{0.75cm}
+{\color{blue}$823 / 1500 = 0.549$}
+\medskip
+
+\item What proportion of respondents are both physically active \textbf{and} reported being in excellent health?\\
+% \vspace{0.75cm}
+{\color{blue}$124/1500 = 0.083$}
+\medskip
+
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]{Column Proportions}
+In a contingency table of column proportions the counts are divided by the corresponding column totals.  So the columns sum to 1.
+
+\small
+\begin{verbatim}
+> prop.table(table(nhanes$PhysActive, nhanes$HealthGen), margin = 2)
+     
+      Excellent Vgood  Good  Fair  Poor
+  No      0.279 0.360 0.457 0.704 0.886
+  Yes     0.721 0.640 0.543 0.296 0.114
+\end{verbatim}
+
+\normalsize
+\begin{itemize}
+\item What does 0.721 represent in the table above?\\
+% \vspace{1.5cm}
+{\color{blue} $124/172 = 0.721$ represents the proportion of respondents in excellent health who are physically active.}
+\medskip
+
+\item What does 0.114 represent in the table above?\\
+% \vspace{1.5cm}
+{\color{blue} $4/35 = 0.114$ represents the proportion of respondents in poor health who are physically active.}
+
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]{Row Proportions}
+Similarly, in a contingency table of row proportions the counts are divided by the corresponding row totals.  So the rows sum to 1.
+
+\small
+\begin{verbatim}
+> prop.table(table(nhanes$PhysActive, nhanes$HealthGen), margin = 1)
+
+      Excellent Vgood  Good  Fair  Poor
+  No      0.071 0.250 0.412 0.222 0.046
+  Yes     0.151 0.366 0.402 0.077 0.005
+\end{verbatim}
+
+\normalsize
+\begin{itemize}
+\item What does 0.222 represent in the table above?\\
+% \vspace{1.5cm}
+{\color{blue} $150/677 = 0.222$ represents the proportion of \textbf{not} physically active people who are in fair health.}
+\medskip
+
+\item What does 0.077 represent in the table above?\\
+% \vspace{1.5cm}
+{\color{blue}63/823 = 0.077 represents the proportion of physically active people who are in fair health.}
+
+\end{itemize}
+\end{frame}
+
+% maybe remove for printed version
+\begin{frame}{Bar Plots with Two Variables}
+Some ways to visualize contingency table information:
+\begin{itemize}
+\item Stacked bar plot
+\item Side-by-side bar plot
+\item Standardized bar plot
+\item Mosaic plot
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Stacked Bar Plot}
+A \textbf{stacked bar plot} is a graphical display of contingency table information, for counts.
+\begin{center}
+\includegraphics[scale = 0.75]{figure/stacked_barplot.pdf}
+\end{center}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Side-by-Side Bar Plot}
+A \textbf{side-by-side bar plot} places bars next to, instead of on top of, each other.
+\begin{center}
+\includegraphics[scale = 0.75]{figure/sidebyside_barplot.pdf}
+\end{center}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Standardized Bar Plot}
+A \textbf{standardized bar plot} is a graphical display of a contingency table of column proportions.  
+\begin{center}
+\includegraphics[scale = 0.65]{figure/standardized_barplot.pdf}
+\end{center}
+Based on the plot above, does there appear to be a relationship between \texttt{HealthGen} and \texttt{PhysActive}?\\  
+% \vspace{2cm}
+{\color{blue} Yes, as general health goes from poor to excellent, the proportion of respondents who are physically active increases. That is, respondents who are in better health are more likely to be physically active.}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Mosaic Plot}
+A \textbf{mosaic plot} is similar to the standardized bar plot, except the column widths correspond to the proportion of respondents who are in each of the general health categories.
+\begin{center}
+\includegraphics[scale = 0.75]{figure/mosaic.pdf}
+\end{center}
+\end{frame}
+
+
+
+
+\end{document}

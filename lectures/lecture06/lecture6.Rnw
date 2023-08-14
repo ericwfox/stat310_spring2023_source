@@ -1,0 +1,187 @@
+\documentclass[11pt]{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xcolor}
+
+% some latex magic for correcting apostrophe issue in verbatim mode
+\makeatletter
+\let \@sverbatim \@verbatim
+\def \@verbatim {\@sverbatim \verbatimplus}
+{\catcode`'=13 \gdef \verbatimplus{\catcode`'=13 \chardef '=13 }} 
+\makeatother
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\begin{document}
+
+%---------------------------------------------
+\begin{frame}
+\large
+Lecture 6:\\
+Sampling Distributions\\
+STAT 310, Spring 2023
+\normalsize
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\vspace{-2.5cm}
+\begin{itemize}
+\item A \textbf{parameter} is a numerical characteristic of the population (fixed number that is usually unknown).\\ 
+\vspace{5pt}
+\item A \textbf{statistic} is a numerical characteristic of the sample (varies depending on sample). \\
+\vspace{5pt}
+\item The statistic is also referred to as a \textbf{point estimate}, since it is our best guess at the value of a population parameter.  
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+% \begin{frame}
+% % picutures
+% \end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\large
+Notation for the proportion:
+\begin{itemize}
+\item $p$: population proportion
+\item $\hat{p}$: sample proportion\\
+\end{itemize}
+\vspace{15pt}
+
+Notation for the mean:
+\begin{itemize}
+\item $\mu$: population mean
+\item $\bar{x}$: sample mean\\
+\end{itemize}
+\vspace{15pt}
+
+The sample size is denoted as $n$
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+A recent Gallup poll found that 63\% of Americans are dissatisfied with US gun laws.  The survey results were based on a random sample of 1,011 adults.\footnote{\tiny \url{https://news.gallup.com/poll/470588/dissatisfaction-gun-laws-hits-new-high.aspx}}
+\begin{enumerate}[(a)]
+\item What is the sample proportion?
+\vspace{0.5cm}
+\item What is the sample size?
+\vspace{0.5cm}
+\item Describe the population proportion?
+\vspace{1.25cm}
+\item Suppose another poll is conducted with a different random sample of adults.  Would you expect the sample proportion to be the same, or slightly different?
+\vspace{0.5cm}
+\end{enumerate}
+\end{frame}
+
+%---------------------------------------------
+% \begin{frame}{Example}
+% \small
+% A recent Gallup poll found that 66\% of Americans are dissatisfied with how the COVID-19 vaccination process is going in the U.S.  The survey results were based on random sample of 4,098 adults.\footnote{\tiny \url{https://news.gallup.com/poll/329552/two-thirds-americans-not-satisfied-vaccine-rollout.aspx}}
+% \begin{enumerate}[(a)]
+% \item What is the sample proportion?
+% \vspace{0.5cm}
+% \item What is the sample size?
+% \vspace{0.5cm}
+% \item Describe the population proportion?
+% \vspace{1.25cm}
+% \item Suppose another poll is conducted with a different random sample of adults.  Would you expect the sample proportion to be the same, or slightly different?
+% \vspace{0.5cm}
+% \end{enumerate}
+% \end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\begin{itemize}
+\item \textbf{Sampling error} refers to how much a statistic, such as the sample proportion, will vary from one random sample to the next.
+\vspace{10pt}
+\item For example, the Gallup poll reported a sampling error of $\pm 4$ percentage points.  This means that the population proportion of Americans that are  dissatisfied with US gun laws is likely between 59\% and 67\%. 
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\vspace{-3.5cm}
+A \textbf{sampling distribution} is the distribution of a statistic when repeatedly taking random samples from a population.
+% youtube video?
+% https://www.youtube.com/watch?v=7S7j75d3GM4
+
+\end{frame}
+
+
+%---------------------------------------------
+\begin{frame}
+% \begin{itemize}
+% \item We can visualize the sampling distribution by making a histogram of the 5000 sample proportions.
+% \item When the sample size $n$ is large, the histogram looks normal and centered around the population proportion.
+% \item The standard deviation of the 5000 sample proportions is called the \textbf{standard error} (SE).  It measures the variability of, or spread of the estimates from sample to sample.
+% \end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\begin{itemize}
+\item In real-world applications, we never actually observe the sampling distribution, since we usually take a single random sample.
+\vspace{10pt}
+\item However, it is useful to always think of a statistic, such as the sample proportion, as coming from such a hypothetical distribution.
+\vspace{10pt}
+\item The concept of a sampling distribution is very important when trying to quantify sampling error.
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Central Limit Theorem (CLT)}
+The sampling distribution for $\hat{p}$ follows an approximate normal distribution centered around the population proportion $p$, and with standard error $\sqrt{p (1-p) / n}$.\blfootnote{The CLT can be verified using computer simulations.}\\
+\vspace{4.5cm}
+
+%This is one of the results of the so-called Central Limit Theorem.  The mathematical proof is quite involved an requires advanced probability.  However, the theorem can be easily verified using computer simulations.\\  
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Conditions for CLT}
+The following conditions should be met to apply the CLT:\\
+\vspace{5pt}
+\begin{itemize}
+\item The data come from a simple random sample.  This is called the \textbf{independence condition} since it implies that the individuals or cases in the data are unrelated.
+\vspace{5pt}
+\item $np \geq 10$ and $n(1-p) \geq 10$.  This is sometimes called the \textbf{success-failure condition}  since $np$ can be interpreted as the expected number of successes and $n(1-p)$ the expected number of failures.
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+\small
+Suppose that the population proportion of Americans who support the expansion of solar energy is $p=0.88$, and $n=1000$ Americans are randomly sampled.
+\begin{enumerate}[(a)]
+\item What is the mean, or center, of the sampling distribution for $\hat{p}$?
+\vspace{0.75cm}
+\item What is the standard error of the sampling distribution for $\hat{p}$?
+\vspace{1cm}
+\item What distribution does $\hat{p}$ follow?
+\vspace{1cm}
+\item Are the conditions for the CLT satisfied?
+\vspace{1.5cm}
+\end{enumerate}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+\small
+Suppose that the population proportion of Americans who support the expansion of solar energy is $p=0.88$, and $n=1000$ Americans are randomly sampled.  What is the probability that the sample proportion $\hat{p}$ will be greater than 0.9?\\
+\includegraphics[scale = 0.5]{norm_draw.pdf}
+\vspace{4cm}
+\end{frame}
+
+
+
+
+\end{document}

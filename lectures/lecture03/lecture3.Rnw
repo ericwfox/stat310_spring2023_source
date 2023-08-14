@@ -1,0 +1,359 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xcolor}
+
+% some latex magic for correcting apostrophe issue in verbatim mode
+\makeatletter
+\let \@sverbatim \@verbatim
+\def \@verbatim {\@sverbatim \verbatimplus}
+{\catcode`'=13 \gdef \verbatimplus{\catcode`'=13 \chardef '=13 }} 
+\makeatother
+
+\begin{document}
+
+%---------------------------------------------
+\begin{frame}
+\large
+Lecture 3:\\
+Summarizing and Displaying Numerical Data\\
+STAT 310, Spring 2023
+\normalsize
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Measures of Central Tendency}
+Let $x_1, x_2, \cdots, x_n$ be observations of a sample of size $n$.  The \textbf{sample mean} is given by 
+\begin{align*}
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i = \frac{x_1 + x_2 + \cdots + x_n}{n}
+\end{align*}
+
+\vspace{15pt}
+\textbf{Example}: The heights of 5 people: 63, 64, 66, 72, 62. 
+\begin{align*}
+\bar{x} = \frac{63 + 64 + 66 + 72 + 62}{5} = 65.4
+\end{align*}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Measures of Central Tendency}
+\vspace{-1.5cm}
+The \textbf{sample median} of a set of observations is the middle value when values are ordered from smallest to largest.\\
+\vspace{20pt}
+
+\textbf{Example}: ($n$ odd) Find the median of $63, 64, 66, 72, 62$.\\
+\vspace{2.5cm}
+
+\textbf{Example}: ($n$ even) Find the median of $63, 64, 66, 72, 62, 77$.\\
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]{Measures of Central Tendency}
+\vspace{-1cm}
+An \textbf{outlier} is an observation that appears extreme relative to the rest of the data.  The median is resistant to outliers, while the mean is affected by outliers.\\
+\vspace{10pt}
+\textbf{Example}: How do the mean and median compare for the sample:\\ $62, 63, 64, 66, 72, 1000$?\\
+\begin{verbatim}
+> x <- c(62, 63, 64, 66, 72, 1000)
+> mean(x)
+[1] 221.1667
+> median(x)
+[1] 65
+\end{verbatim}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Quartiles}
+
+\begin{itemize}
+\item The \textbf{first quartile}, denoted by $Q_1$, is the value such that 25\% of the data falls below, i.e., the $25^{th}$ percentile.
+\item The \textbf{third quartile}, denoted by $Q_3$, is the value such that 75\% of the data falls below, i.e., the $75^{th}$ percentile.
+\item Note that the second quartile, $Q_2$, is the median.
+\end{itemize}
+\vspace{10pt}
+
+A method for finding $Q_1$ and $Q_3$ by hand:
+\begin{enumerate}
+\item Order the data from smallest to largest
+\item Divide the data into two sets using the median
+\item $Q_1$ is the median of the first half, and $Q_3$ is the median of the second half\\
+\end{enumerate} 
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Quartiles}
+\vspace{-3.5cm}
+\textbf{Example}: Find $Q_1$ and $Q_3$ for the following sample of height measurements of $n=10$ people:
+
+\medskip
+$68, 76, 66, 63, 70, 66, 71, 71, 64, 71$\\
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]
+Useful R commands:
+\small
+\begin{verbatim}
+> x <- c(68, 76, 66, 63, 70, 66, 71, 71, 64, 71)
+> summary(x) 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   63.0    66.0    69.0    68.6    71.0    76.0 
+> mean(x)
+[1] 68.6
+> median(x)
+[1] 69
+> min(x)
+[1] 63
+> max(x)
+[1] 76
+> sort(x)
+ [1] 63 64 66 66 68 70 71 71 71 76
+\end{verbatim}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Measures of Variation}
+\begin{itemize}
+\item \textbf{Range} = Max - Min
+\vspace{10pt}
+\item \textbf{Interquartile range}: IQR = $Q_3$ - $Q_1$
+\vspace{10pt}
+\item Let $x_1, x_2, \cdots, x_n$ be a sample of $n$ observations.  The \textbf{sample variance} is defined as
+$$s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1},$$
+and the \textbf{sample standard deviation} is defined as
+$$s = \sqrt{s^2} = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}}$$
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Measures of Variation}
+\begin{itemize}
+\item The sample variance can be thought of as the average of the squared deviations between the observations $x_i$ and the sample mean $\bar{x}$.  It measures how concentrated values are around the sample mean.
+\vspace{10pt}
+\item The standard deviation is in the same units as the data (e.g., if the data are in $ft$, then $s$ is in $ft$ and $s^2$ is in $ft^2$).
+\vspace{10pt}
+\item $s^2$, $s$, and the range are affected by outliers, while the IQR is resistant to outliers.
+% \vspace{5pt}
+% \item Measures of variation are not affected by adding a constant (shifting the data), but are affected by multiplying by a constant (rescaling the data).
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Measures of Variation}
+\textbf{Example:}  Calculate the variance and standard deviation of the following sample of $n=5$ observations: $2, 5, 10, 15, 18$\\
+\small
+\begin{align*}
+\bar{x} = \frac{2 + 5 + 10 + 15 + 18}{5}  = \frac{50}{5} = 10
+\end{align*}
+\begin{align*}
+s^2 &= \frac{1}{5-1} [(2-10)^2 + (5-10)^2 + (10-10)^2 + (15-10)^2 + (18-10)^2]\\
+&= \frac{1}{4} (8^2 + 5^2 + 0^2 + 5^2 + 8^2)\\
+&= \frac{178}{4} = 44.5\\
+s &= \sqrt{44.5} = \boxed{6.67}
+\end{align*}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]
+Useful R commands:
+\begin{verbatim}
+> x <- c(68, 76, 66, 63, 70, 66, 71, 71, 64, 71)
+> var(x)
+[1] 15.6
+> sd(x)
+[1] 3.949684
+> max(x) - min(x) # range
+[1] 13
+> IQR(x)
+[1] 5
+\end{verbatim}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}[fragile]
+\small
+\vspace{-2.5cm}
+\textbf{Example}:  Without doing any calculations, which of the following data sets do you think has the largest standard deviation?  Which has the smallest standard deviation?  Use R to verify.\\
+
+\vspace{10pt}
+Set 1: $100, 99, 98, 50, 2, 1, 0$\\ 
+Set 2: $53, 52, 51, 50, 49, 48, 47$\\
+Set 3: $51, 51, 51, 50, 49, 49, 49$\\
+\end{frame}
+
+%---------------------------------------------
+% \begin{frame}{Shifting and Rescaling Data}
+% \begin{itemize}
+% \item \emph{Shifting}: Adding a constant to each data value affects measures of position (mean, median, quartiles), but not measures of variation (standard deviation, IQR)
+% \vspace{10pt}
+% \item \emph{Rescaling}: Multiplying each data value by a constant affects both measures of position (mean, median, quartiles) and measures of variation (standard deviation, IQR)
+% \end{itemize}
+% \end{frame}
+
+%---------------------------------------------
+% \begin{frame}[fragile]
+% %\vspace{-2cm}
+% \small
+% \textbf{Ex}: Consider the following temperature measurements in $^{\circ}F$: $72, 67, 73, 81, 75$.  
+% \begin{enumerate}[(a)]
+% \item Calculate the mean and standard deviation. (You can use R for this)\\
+% %\vspace{1.75cm}
+% \vspace{-5pt}
+% {\color{blue}
+% \begin{verbatim}
+% > x <- c(72, 67, 73, 81, 75)
+% > mean(x)
+% [1] 73.6
+% > sd(x)
+% [1] 5.07937
+% \end{verbatim}
+% }
+% \item What is the mean and standard deviation if we convert from $^{\circ}F$ to $^{\circ}C$ ?  The conversion formula is $^{\circ}C = \frac{5}{9} (^{\circ}F - 32)$\\
+% \medskip
+% {\color{blue}
+% Mean in Celsius:\\
+% $$\frac{5}{9}(73.6 - 32) = 23.11^{\circ}C$$
+% Standard deviation in Celsius:\\
+% $$\frac{5}{9} (5.08) = 2.82^{\circ}C$$
+% }
+% \end{enumerate}
+% \end{frame}
+
+
+
+
+%---------------------------------------------
+\begin{frame}{Box Plot}
+A box plot is a useful way to display the distribution of data and identify outliers.\\
+\vspace{10pt}
+
+Upper Fence = $Q_3 + 1.5(IQR)$\\
+Lower Fence = $Q_1 - 1.5(IQR)$\\
+\vspace{10pt}
+
+Values outside the fences are potential outliers.
+%\footnote{Remark:  Values falling above $Q_3 + 3(IQR)$ or below $Q_1 - 3(IQR)$ are ``extreme" outliers.}
+\end{frame}
+
+
+%---------------------------------------------
+\begin{frame}[fragile]{Example: Box Plot}
+\small
+\begin{verbatim}
+> x <- c(0, 18, 15, 32, 5, 22, 47, 15, 26, 13, 9)
+> summary(x)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00   11.00   15.00   18.36   24.00   47.00 
+> boxplot(x)
+\end{verbatim}
+\normalsize
+\includegraphics[scale=0.4]{figure/boxplot1.pdf}
+\end{frame}
+
+%---------------------------------------
+\begin{frame}[fragile]{Histogram}
+\begin{itemize}
+\item A histogram is a useful way to visualize the distribution of a numerical variable.  
+\vspace{10pt}
+\item To construct a histogram, the range of the data is divided into bins of equal width.  Then the number of observations falling in each bin are counted.  The counts are plotted as rectangles over each bin.
+\vspace{10pt}
+\item Histograms are especially convenient for understanding the shape of the data distribution.
+\end{itemize}
+\end{frame}
+
+%---------------------------------------
+\begin{frame}{Example: Histogram}
+Data set from 2008 with the per capita income (in thousands of dollars) and percent of the population with a college education for each of the 50 states.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrr}
+  \hline
+ & State & Income & Pct College \\ 
+  \hline
+1 & Alabama  & 43.62 & 23.50 \\ 
+  2 & Alaska  & 72.52 & 28.00 \\ 
+  3 & Arizona  & 50.26 & 27.50 \\ 
+  4 & Arkansas  & 41.37 & 21.10 \\ 
+  5 & California  & 61.82 & 31.40 \\ 
+  6 & Colorado  & 60.63 & 38.10 \\ 
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+  49 & Wisconsin  & 53.36 & 27.80 \\ 
+  50 & Wyoming  & 58.84 & 25.70 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+%---------------------------------------
+\begin{frame}{Example: Histogram}
+\vspace{-0.5cm}
+\tiny
+\begin{tabular}{l|llllllll}
+Bin & $(35, 40]$ & $(40, 45]$ & $(45,50]$ & $(50,55]$ & $(55,60]$ & $(60,65]$ & $(65,70]$ & $(70,75]$\\
+\hline
+Count & 1 & 5 & 14 & 10 & 6 & 6 & 4 & 4\\
+\end{tabular}
+
+\includegraphics[scale=0.5]{figure/hist_income.pdf}
+
+\small
+Based on the histogram, how many states have a per capita income between \$40,000-\$50,000?  
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Describing the Shape of a Distribution}
+\includegraphics[scale = 0.6]{figure/shapes.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\small
+\begin{itemize}
+\item For symmetric distributions, the mean and median are approximately equal.
+\item For right skewed distributions, the mean is greater than the median.
+\item For left skewed distributions, the mean is less than the median.
+\end{itemize}
+
+\vspace{20pt}
+\includegraphics[scale=0.6]{figure/distributions.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Scatter Plot}
+\small
+Scatter plots are useful for visualizing the relationship between two numerical variables.  For example, the scatter plot below shows the relationship between per capita income and percent college graduates.  There are 50 points since each point represents a state in the U.S.\\
+
+\vspace{10pt}
+\includegraphics[scale=0.5]{figure/scatter_income_college.pdf}
+
+%Describe the relationship between the two variables in the scatter plot.
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Describing Relationships in Scatter Plots}
+\begin{itemize}
+\item Two numerical variables are said to be \textbf{associated} if the scatter plot shows a discernible pattern or trend.
+\vspace{5pt}
+\item An association is \textbf{positive} if $y$ increases as $x$ increases.
+\vspace{5pt}
+\item An association is \textbf{negative} if $y$ decreases as $x$ increases.
+\vspace{5pt}
+\item An association is \textbf{linear} if the scatter plot between $x$ and $y$ has a linear trend; otherwise, the association is called \textbf{nonlinear}. 
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\centering
+\begin{figure}
+\includegraphics[scale=0.5]{figure/associations.pdf}
+\end{figure}
+\end{frame}
+
+
+
+\end{document}

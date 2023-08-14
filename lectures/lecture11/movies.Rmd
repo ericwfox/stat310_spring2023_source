@@ -1,0 +1,69 @@
+```{r}
+library(ggplot2movies)
+library(tidyverse)
+library(moderndive)
+```
+
+```{r}
+movies
+```
+
+```{r}
+View(movies)
+```
+
+```{r}
+set.seed(999)
+movies %>%
+  filter(Action == 1 & Comedy == 0) %>%
+  select(title, year, rating, Action) %>%
+  na.omit() %>%
+  sample_n(50) -> action_samp
+```
+
+```{r}
+action_samp
+```
+
+
+```{r}
+set.seed(999)
+movies %>%
+  filter(Action == 0 & Comedy == 1) %>%
+  select(title, year, rating, Comedy) %>%
+  na.omit() %>%
+  sample_n(50) -> comedy_samp
+```
+
+```{r}
+t.test(comedy_samp$rating, action_samp$rating)
+```
+
+
+```{r}
+summary(comedy_samp$rating)
+```
+
+```{r}
+sd(comedy_samp$rating)
+```
+
+
+```{r}
+summary(action_samp$rating)
+```
+
+```{r}
+sd(action_samp$rating)
+```
+
+
+```{r}
+pdf("movie_boxplot.pdf", width = 4, height = 3)
+par(mar = c(4, 4, 2, 2))
+boxplot(action_samp$rating, comedy_samp$rating, 
+        names = c("Action", "Comedy"),
+        ylab = "IMDb Rating")
+dev.off()
+```
+

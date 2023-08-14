@@ -1,0 +1,213 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xcolor}
+
+% some latex magic for correcting apostrophe issue in verbatim mode
+\makeatletter
+\let \@sverbatim \@verbatim
+\def \@verbatim {\@sverbatim \verbatimplus}
+{\catcode`'=13 \gdef \verbatimplus{\catcode`'=13 \chardef '=13 }} 
+\makeatother
+
+\begin{document}
+
+%---------------------------------------------
+\begin{frame}
+\large
+Lecture 5:\\
+Normal Distribution\\
+STAT 310, Spring 2023
+\normalsize
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}
+\begin{itemize}
+\item The normal distribution is one of the most common and important probability distributions.
+\vspace{5pt}
+\item It is symmetric, unimodal, and bell curve shaped.
+\vspace{5pt}
+\item Many phenomena in nature approximately follow a normal distribution such as the height of individuals, the velocity in any direction of a molecule of gas, and measurement error.
+\end{itemize}
+\begin{figure}
+\includegraphics[scale=0.55]{figure/norm_draw}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}
+\small
+\begin{itemize}
+\item The normal distribution curve is a mathematical abstraction.
+\item Just as there is no such thing as a perfect circle, no real data set perfectly follows a normal distribution.
+\item However, many data sets \emph{approximately} follow a normal distribution, and so the normal distribution provides a very useful approximation for a variety of problems.
+\end{itemize}
+\begin{figure}
+\includegraphics[scale = 0.4]{figure/height_hist_norm.pdf}
+\caption{Histogram of male heights (cm) with normal distribution curve. We see that the distribution of height is approximately normal.}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------
+\begin{frame}
+\begin{itemize}
+\item The normal distribution is characterized by two parameters: the mean, $\mu$, and standard deviation, $\sigma$.
+\vspace{5pt}
+\item The mean specifies the center of the distribution.  Changing the value of the mean shifts the bell curve to the left or right.
+\vspace{5pt}
+\item The standard deviation specifies the spread of the distribution.  Changing the value of the standard deviation stretches or constricts the bell curve.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}
+\begin{itemize}
+\item The notation $X \sim N(\mu, \sigma)$ means that the random variable $X$ follows a normal distribution with mean $\mu$ and standard deviation $\sigma$.\footnote{Informally, a ``random variable" is a variable that takes on numerical values that represent outcomes of a random process, such as the height or IQ of a randomly selected person.}
+\vspace{5pt}
+\item For example, the plot below shows the distribution of $N(\mu = 10, \sigma = 3)$.
+\end{itemize}
+\begin{figure}
+\includegraphics[scale=0.3]{figure/norm1.pdf}
+\end{figure}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.65]{figure/norm2.pdf}
+\caption{Plot of two normal distributions.}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}
+\begin{itemize}
+\item Probabilities are computed as the area under the normal distribution curve.
+\vspace{5pt}
+\item The total area under the normal distribution curve is always 1.
+\end{itemize}
+\begin{figure}
+\includegraphics[scale=0.55]{figure/norm3}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}{Empirical Rule}
+\begin{figure}
+\includegraphics[scale=0.55]{figure/empirical.pdf}
+\end{figure}
+\small
+\begin{itemize}
+\item About 68\% of the distribution is contained within 1 standard deviation of the mean.
+\item About 95\% of the distribution is contained within 2 standard deviations of the mean.
+\item About 99.7\% of the distribution is contained within 3 standard deviations of the mean.
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Standardizing with $z$-scores}
+\begin{itemize}
+\item The normal distribution with mean $\mu = 0$ and standard deviation $\sigma = 1$ is called the \textbf{standard normal distribution} or \textbf{Z-distribution}.
+\vspace{5pt}
+\item If $x$ is an observation from $N(\mu, \sigma)$, we define the $z$-score as
+$$z = \frac{x - \mu}{\sigma}$$
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Standardizing with $z$-scores}
+\begin{itemize}
+\item A $z$-score can be interpreted as the number of standard deviations an observation $x$ lies away from the mean.
+\vspace{5pt}
+\begin{itemize}
+\item For instance, if a student has a $z$-score of 2 on an exam then that student is 2 standard deviations \emph{above} the average score.
+\vspace{5pt}
+\item If a student has a $z$-score of -1.5 on an exam then that student is 1.5 standard deviations \emph{below} the average score.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+SAT scores are normally distributed with mean $\mu=1100$ and standard deviation $\sigma = 200$. 
+\begin{enumerate}[(a)]
+\item Calculate and interpret the $z$-score for a student who scored a 1350 on the SAT.
+\vspace{2.25cm}
+% {\color{blue}
+% \[z = \frac{x - \mu}{\sigma} = \frac{1350 - 1100}{200} = 1.25 \]
+% Student scored 1.25 standard deviations \textbf{above} average SAT~score.
+% }
+% \medskip
+
+\item Calculate and interpret the $z$-score for a student who scored a 900 on the SAT.
+\vspace{2.25cm}
+% {\color{blue}
+% \[z = \frac{x - \mu}{\sigma} = \frac{900 - 1100}{200} = -1 \]
+% Student scored 1 standard deviation \textbf{below} average SAT score.
+% }
+\end{enumerate}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+\vspace{-2.25cm}
+\small
+Scores on an IQ test follow a normal distribution with mean $\mu = 100$ and standard deviation $\sigma = 15$.  That is, $X \sim N(\mu = 100, \sigma = 15)$.
+\begin{enumerate}[(a)]
+\item What is the probability that a person has an IQ less than 90?
+\end{enumerate}
+\includegraphics[scale=0.5]{figure/norm_draw.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+\vspace{-2.25cm}
+\small
+Scores on an IQ test follow a normal distribution with mean $\mu = 100$ and standard deviation $\sigma = 15$.  That is, $X \sim N(\mu = 100, \sigma = 15)$.
+\begin{enumerate}[(b)]
+\item What is the probability that a person has an IQ greater than 120?
+\end{enumerate}
+\includegraphics[scale=0.5]{figure/norm_draw.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+\vspace{-2.25cm}
+\small
+Scores on an IQ test follow a normal distribution with mean $\mu = 100$ and standard deviation $\sigma = 15$.  That is, $X \sim N(\mu = 100, \sigma = 15)$.
+\begin{enumerate}[(c)]
+\item What is the probability that a person has an IQ between\\ 90 and 120?
+\end{enumerate}
+\includegraphics[scale=0.5]{figure/norm_draw.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+\vspace{-2.25cm}
+\small
+Scores on an IQ test follow a normal distribution with mean $\mu = 100$ and standard deviation $\sigma = 15$.  That is, $X \sim N(\mu = 100, \sigma = 15)$.
+\begin{enumerate}[(d)]
+\item What is the cutoff for the lowest 10\% of all IQ scores (i.e., find the 10th percentile)?
+\end{enumerate}
+\includegraphics[scale=0.5]{figure/norm_draw.pdf}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Example}
+\vspace{-2.25cm}
+\small
+Scores on an IQ test follow a normal distribution with mean $\mu = 100$ and standard deviation $\sigma = 15$.  That is, $X \sim N(\mu = 100, \sigma = 15)$.
+\begin{enumerate}[(e)]
+\item What is the cutoff for the highest 5\% of all IQ scores (i.e., find the 95th percentile)?
+\end{enumerate}
+\includegraphics[scale=0.5]{figure/norm_draw.pdf}
+\end{frame}
+
+\end{document}
+
+
