@@ -1,0 +1,114 @@
+\documentclass[11pt]{report}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}               
+\usepackage{setspace}                
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{fullpage}
+
+\newenvironment{myitemize}
+{ \begin{itemize}
+    \setlength{\itemsep}{5pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}     }
+{ \end{itemize}                  } 
+
+\begin{document}
+\setlength\parindent{0pt}
+
+\begin{center}
+\large
+Syllabus for STAT 310: Statistics for Social Sciences\\
+Spring 2023, Section 1 (3 units)\\   
+\end{center}
+\vspace{10pt}
+
+\normalsize
+\textbf{Instructor:} Eric Fox\\ 
+\textbf{Office}: North Science 303A\\ 
+\textbf{Email}: \url{eric.fox@csueastbay.edu}\\
+
+\textbf{Class Time and Room:}
+\begin{myitemize}
+\item Mon 10-11:40 at South Science 213
+\item Wed 10-11:40 at South Science 146 (computer lab)
+\end{myitemize}
+
+\vspace{5pt}
+\textbf{Office Hours:} Tues/Thurs 3:30-4:30 and Wed 12-1 at North Science 303A, or by appointment\\ 
+
+\textbf{Website:} Course materials will be posted on Canvas.\\ 
+
+\textbf{Textbook}:  Diez, D., Barr, C. and Cetinkaya-Rundel M. \emph{OpenIntro Statistics}, 4th Edition, 2019. [Free PDF version posted on Canvas]\\
+
+\textbf{Software}:\\ 
+R, can be downloaded here \url{https://www.r-project.org/}\\
+RStudio, can be downloaded here \url{https://www.rstudio.com/}\\
+RStudio Cloud, \url{https://rstudio.cloud/}\\
+
+\textbf{Course Topics}:  This course will provide an introduction to statistics with a focus on applications to social sciences. Topics include exploratory data analysis, statistical inference, and linear regression.  Computer labs will provide training in the use of the statistical programming language~R.
+\begin{myitemize}
+\item Data collection: sampling designs and experimental studies
+\item Descriptive statistics and data visualization
+\item Normal distribution
+\item Sampling distributions 
+\item Confidence intervals 
+\item Hypothesis testing
+\item Linear regression and correlation
+\end{myitemize}
+
+\vspace{5pt}
+\textbf{Grading:}
+\begin{myitemize}
+\item 10\% In-class activities and participation
+\item 15\% Homework
+\item 15\% Computer labs 
+\item 60\% Three exams (20\% each)
+\end{myitemize}
+\newpage
+
+\textbf{Policy on Late Assignments:}  Late assignments will either receive a point deduction or not be accepted.  However, your lowest scoring homework and lab assignment will be dropped.  I may agree to extensions on due dates if you are experiencing an emergency or illness.\\
+
+\textbf{Attendance Policy:}  Students are required to attend class on campus during the scheduled times and participate in class activities.\\  
+
+\textbf{Important Dates}:
+\begin{myitemize}
+\item First day of classes: Tuesday, January 17
+\item Last day to drop: Monday, January 30
+\item Spring break: March 27-31
+\item Last day to withdraw: Friday, April 14
+\item Last day of classes: May 5
+\end{myitemize}
+A complete list of important dates:\\
+\url{https://www.csueastbay.edu/registrar/important-dates/spring-2023.html}\\
+
+\textbf{Student Learning Outcomes:}  Upon successful completion of this course, students should be able to:
+\begin{myitemize}
+\item Apply statistical methodologies, including (a) summary statistics and graphical displays, (b) hypothesis testing and confidence intervals, and (c) linear regression and correlation.
+\item Understand basic theory underlying these methodologies. 
+\item Use R and RStudio to analyze data sets and implement statistical methods.
+\item Communicate statistical concepts clearly and appropriately to others. 
+\end{myitemize}
+
+% \textbf{Student Learning Outcomes:} Upon successful completion of this course students will be able to:
+% \begin{myitemize}
+% \item The Lecture component of this course has the following student learning outcomes: apply basic computational skill.
+% \item Communicate statistical results to others.
+% \item Analyze data using appropriate statistical software and to interpret results.
+% \item The Activity component of the course has the following student learning outcomes: select and use appropriate statistical software, communicate statistical results to others all in respect to descriptive statistics, graphical displays, hypothesis testing and estimation, modeling and error analysis.
+% \end{myitemize}
+
+\vspace{5pt}
+\textbf{Common Syllabus Items:}  Items such as policies on academic dishonesty, disability, and handling emergency situations can be found under ``University Policies" on Canvas.\\
+
+\textbf{A Note on Discrimination, Harassment, and Retaliation (DHR)}:\\
+California State University East Bay is committed to a community free from sexual assault and violence. Title IX and CSU policy prohibit discrimination, harassment and retaliation, including Sex Discrimination, Sexual Harassment or Sexual Violence. CSUEB encourages anyone experiencing such behavior to report their concerns immediately. CSUEB has both confidential and non-confidential resources and reporting options available to you. \textbf{As a faculty member, I am required to report all incidents and thus cannot promise confidentiality.} I must provide our Title IX coordinator and or the DHR Administrator with relevant details such as the names of those involved in an incident. For confidential services, contact the \textbf{Confidential Advocate at 510-885-3700} or go to the Student Health and Counseling Center. For 24-hour crisis services call the Bay Area Women Against Rape (BAWAR) hotline at 510-845-7273. For more information about policies and resources or reporting options, please visit the following websites: \url{https://www.csueastbay.edu/diversity/title-ix/}
+
+
+
+
+
+
+\end{document}
