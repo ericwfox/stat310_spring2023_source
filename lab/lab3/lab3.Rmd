@@ -1,0 +1,101 @@
+---
+title: 'Lab 3: Inference for Two Means Using R'
+author: "STAT 310, Spring 2023"
+output: pdf_document
+---
+
+In this lab we will go over how to perform a hypothesis test and compute a confidence interval for the difference between two means.  We will use a data set on birth records to answer the question: "Is there convincing evidence that newborns from mothers who smoke have a different average birth weight than newborns from mothers who don't smoke?"
+
+## North Carolina Births Data Set
+
+In 2004, the state of North Carolina released a large data set containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children.  We will work with a random sample of 1,000 cases from the complete data set collected for this study.
+
+The data set is called `ncbirths` and it can be accessed from the `openintro` package.  To install this package run the following command in the R console:
+
+```{r, eval = F}
+install.packages("openintro")
+```
+
+You only need to install the package on your computer once. Next, to load the contents of the package into RStudio run the command:
+
+```{r, message = FALSE}
+library(openintro)
+```
+
+Note that you need to run the `library()` command each time you open RStudio and want to use a particular package.
+
+The `ncbirths` data set should now be available in your RStudio. Type the following command to look at a scrollable, spreadsheet display of the entire data set:
+
+```{r, eval = FALSE}
+View(ncbirths)
+```
+
+Use `dim()` to check the dimensions:
+```{r}
+dim(ncbirths)
+```
+We see that the data set has 1000 rows and 13 columns (variables).  Descriptions of the variables are provided in the help menu, which can be viewed by typing:
+```{r, eval = FALSE}
+help(ncbirths)
+```
+
+\newpage
+
+## Exploratory Analysis
+
+As a first step in the analysis, we will look at some graphical and numerical summaries of the data.  Of primary interest is the relationship between the mother's smoking status and the baby's weight.
+
+First, we create side-by-side box plots to look at the distributions of birth weight for babies from `nonsmoker` and `smoker` mothers.  
+```{r}
+boxplot(weight ~ habit, data = ncbirths, xlab = "", ylab = "weight (lbs)")
+```
+
+Next, we use the `table()` function to count the number `nonsmoker` and `smoker` mothers in the data set:
+
+```{r}
+table(ncbirths$habit)
+```
+
+
+We can also use the `aggregate()` function to compute the sample mean and standard deviation of birth weight for babies from `nonsmoker` and `smoker` mothers separately.  
+```{r}
+aggregate(weight ~ habit, data = ncbirths, FUN = mean)
+```
+```{r}
+aggregate(weight ~ habit, data = ncbirths, FUN = sd)
+```
+
+
+\newpage
+## Two Sample t-test and Confidence Interval
+
+The box plots and summary statistics indicate that babies from mothers who smoke tend to weigh less than babies from mother who do not smoke.  But is the difference statistically significant?  That is, is the difference in birth weight due to random chance (sampling variability), or is there an actual effect from smoking?
+
+We can use the \texttt{t.test()} function to perform the hypothesis test and calculate a confidence interval for the difference between the two means.  Specifically, the null and alternative hypothesis are
+
+$H_0: \mu_{ns} = \mu_{s}$ (the mean birth weight of babies from nonsmoking mothers \emph{is the same} as the mean birth weight of babies from smoking mothers)
+
+$H_A: \mu_{ns} \neq \mu_{s}$ (the mean birth weight of babies from nonsmoking mothers \emph{is different} than the mean birth weight of babies from smoking mothers)
+
+Note that the conditions for the test are satisfied since the sample sizes are large (there 873 nonsmokers, and 126 smokers); the sample was also randomly collected, and the two groups are independent (smoking and nonsmoking mothers are not related).
+
+Now we can proceed with the hypothesis test:
+```{r}
+t.test(weight ~ habit, data = ncbirths)
+```
+
+Since the $p$-value $= 0.01945 < 0.05$, we reject $H_0$.  Therefore, there is a statistically significant difference between the two means.  The data provide convincing evidence that the mean birth weight of babies from smoking mothers is less than the mean birth weight of babies from nonsmoking mothers. 
+
+A 95\% confidence interval for the difference between the two population means, $\mu_{ns} - \mu_s$, is (0.052, 0.58).  So we are 95\% confident that the population mean birth weight of babies from nonsmoking mothers is between 0.052 and 0.58 pounds higher than the population mean birth weight of babies from smoking mothers. 
+
+While the default confidence level is 95\%, other confidence levels can be specified in the \texttt{t.test()} function.  For example, run the following command:
+```{r, eval = F}
+t.test(weight ~ habit, data = ncbirths, conf.level = 0.9)
+```
+
+Note that similar to the `boxplot()` function, the `t.test()` function also uses the formula notation `y ~ x` where `y` is a numerical variable, and `x` is a categorical variable specifying the two groups.
+
+
+
+
+

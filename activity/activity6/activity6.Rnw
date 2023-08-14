@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{enumerate}
+
+\begin{document}
+\setlength\parindent{0pt}
+\textbf{Activity 6}: Hypothesis Testing for a Proportion\\
+STAT 310, Spring 2023\\
+
+% OI 5.32
+\textbf{Exercise 1}.  It is believed that nearsightedness affects about 8\% of all children.  In a random sample of 194 children, 21 are nearsighted.  Conduct a hypothesis test for the following question: do these data provide evidence that the 8\% value is inaccurate?
+\begin{enumerate}[(a)]
+\item Write the null and alternative hypothesis for a two-sided test.\\
+\vspace{1.5cm}
+
+\item Check the conditions for the hypothesis test.\\
+\vspace{1.5cm}
+
+\item Calculate the test statistic.\\
+\vspace{2cm}
+
+\item Calculate the $p$-value and make a decision using $\alpha = 0.05$ significance level.\\
+\includegraphics[scale=0.5]{norm_draw}\\
+\vspace{1cm}
+
+\item What is the conclusion of the test in the context of the data?\\
+\vspace{2cm}
+
+\item What type of testing error might we have made?
+\end{enumerate}
+%From \emph{OpenIntro}, fourth edition, Exercise 5.22
+
+\newpage
+
+\textbf{Exercise 2}.  Find the $p$-value for the given $z$-test statistic for a hypothesis test for a proportion.  Also determine if the null hypothesis would be rejected at $\alpha = 0.05$ significance level.  Assume all the conditions for the hypothesis test are satisfied.
+\begin{enumerate}[(a)]
+\item $H_A: p < p_0$; $z = -1.25$\\
+\includegraphics[scale=0.5]{norm_draw}\\
+\vspace{2cm}
+
+\item $H_A: p > p_0$; $z = 2.5$\\
+\includegraphics[scale=0.5]{norm_draw}\\
+\vspace{2cm}
+
+\item $H_A: p \neq p_0$; $z = -3$\\
+\includegraphics[scale=0.5]{norm_draw}\\
+\end{enumerate}
+
+
+
+
+
+\end{document}

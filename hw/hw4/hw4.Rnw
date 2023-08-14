@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\usepackage{url}
+
+\begin{document}
+\setlength\parindent{0pt}
+
+\textbf{STAT 310, HW 4}\\
+Not to be collected\\
+
+\textbf{Reading:}  Section 5.3 from \emph{OpenIntro}\\
+
+\textbf{Exercise 1}.  A Rasmussen Report survey of 1000 Americans found that 42\% of respondents believe that raising the minimum wage will help the economy.\footnote{Rasmussen Reports survey, Most Favor Minimum Wage of \$10.50 Or Higher, April 16, 2019.}  
+\begin{enumerate}[(a)]
+\item Calculate and interpret a 95\% confidence interval for the population proportion of Americans who believe that raising the minimum wage will help the economy.
+\item Check the conditions for the confidence interval.
+\item Based on the confidence interval, does the survey provide convincing evidence that \emph{less than} 50\% of all Americans believe that raising the minimum wage will help the economy?  Explain.
+\item Conduct a hypothesis test to answer part (c).  Make sure to write the null and alternative hypothesis, compute the $p$-value, and state your conclusion.\\ 
+\end{enumerate}
+
+\textbf{Exercise 2}.  Some people claim that they can tell the difference between a diet soda and a regular soda in the first sip. A researcher wanting to test this claim randomly sampled 80 such people. He then filled 80 plain white cups with soda, half diet and half regular through random assignment, and asked each person to take one sip from their cup and identify the soda as diet or regular. 53 participants correctly identified the soda.   Do these data provide strong evidence that these people are any better than random guessing at telling the difference between diet and regular soda?
+\begin{enumerate}[(a)]
+\item Write the null and alternative hypothesis for a one-sided test.
+\item Check the conditions for the hypothesis test.
+\item Calculate the test statistic.
+\item Calculate the $p$-value and make a decision using $\alpha = 0.01$ significance level.
+\item What is the conclusion of the test in the context of the data?
+\item What type of testing error might we have made?
+\end{enumerate}
+
+
+\end{document}

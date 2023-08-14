@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+%\usepackage{fullpage}
+
+
+\begin{document}
+\setlength\parindent{0pt}
+
+\textbf{STAT 310, HW 1}\\
+\textbf{Due}: Thursday, February 2\\
+
+\textbf{Directions:} Please submit your completed assignment to Canvas in PDF format.\\
+
+\textbf{Exercise 1}. A survey was conducted to study the smoking habits of UK residents. Below is a data table displaying a portion of the data collected in this survey. Note that 
+``$\pounds$" stands for British Pounds Sterling, ``cig" stands for cigarettes, and ``N/A'' refers to a missing component of the data.
+
+\begin{center}
+\scriptsize{
+\begin{tabular}{rccccccc}
+\hline
+	& sex 	 & age 	& marital 	& grossIncome 					     & smoke & amtWeekends	& amtWeekdays \\ 
+\hline
+1 	& Female & 42 	& Single 	& Under $\pounds$2,600 			     & Yes 	 & 12 cig/day   & 12 cig/day \\ 
+2 	& Male	 & 44	& Single 	& $\pounds$10,400 to $\pounds$15,600 & No	 & N/A 			& N/A \\ 
+3 	& Male 	 & 53 	& Married   & Above $\pounds$36,400 		     & Yes 	 & 6 cig/day 	& 6 cig/day \\ 
+\vdots & \vdots & \vdots & \vdots & \vdots 				             & \vdots & \vdots 	    & \vdots \\ 
+1691 & Male  & 40   & Single 	& $\pounds$2,600 to $\pounds$5,200   & Yes 	 & 8 cig/day 	& 8 cig/day \\   
+\hline
+\end{tabular}
+}
+\end{center}
+
+\begin{enumerate}[(a)]
+\item What does each row of the data table represent?
+\item How many participants were included in the survey?
+\item Indicate whether each variable in the study is numerical or categorical.  If categorical, indicate if the variable is ordinal.\\
+\end{enumerate}
+
+\textbf{Exercise 2}. A study that surveyed a random sample of otherwise healthy high school students found that they are more likely to get muscle cramps when they are stressed. The study also noted that students drink more coffee and sleep less when they are stressed.
+\begin{enumerate}[(a)]
+\item What type of study is this (experimental or observational)?
+\item Can this study be used to conclude a causal relationship between 
+increased stress and muscle cramps?
+\item State possible confounding variables that might explain the observed 
+relationship between increased stress and muscle cramps.\\ 
+\end{enumerate}
+
+\clearpage
+
+\textbf{Exercise 3}. In a public health study on the effects of consumption of fruits and vegetables on psychological well-being in young adults, participants were randomly assigned to three groups: (1) diet-as-usual, (2) an ecological momentary intervention involving text message reminders to increase their fruits and vegetable consumption plus a voucher to purchase them, or (3) a fruit and vegetable intervention in which participants were given two additional daily servings of fresh fruits and vegetables to consume on top of their normal diet. Participants were asked to take a nightly survey on their smartphones. Participants were student volunteers at the University of Otago, New Zealand. At the end of the 14-day study, only participants in the third group showed improvements to their psychological well-being across the 14-days relative to the other groups.\footnote{Tamlin S Conner et al. \emph{Let them eat fruit! The effect of fruit and vegetable consumption on psychological well-being in young adults: A randomized controlled trial}. In: PLOS ONE 12.2 (2017), e0171206}
+\begin{enumerate}[(a)]
+\item What type of study is this (experimental or observational)?
+\item Comment on whether the results of the study can be used to establish causal relationships.\\
+\end{enumerate}
+
+
+\textbf{Exercise 4}.  A college with 3000 students enrolled is interested in surveying its students about a change in administrative policy.  In each of the following descriptions of the method of selecting students in the survey, identify the type of sampling method used (SRS, stratified, cluster, or systematic).
+\begin{enumerate}[(a)]
+\item Randomly sample 100 students, where each student at this college has the same chance of being included in the sample.
+\item There are 100 different classes that are currently in session.  10 classes are randomly selected, and every student attending each of those 10 classes is included in the sample.
+\item Every 25th student is selected from a roster that lists the names and IDs of all students attending the college. 
+\item The students are divided up based on class level (freshman, sophomore, junior, senior).  A simple random sample of 50 students is taken from each class level.\\
+\end{enumerate} 
+
+\textbf{Exercise 5.}  Use R to draw two simple random samples of size $n=5$ from the numbers 1 through 100.  Write down both the code and the output in the console.
+
+
+
+\end{document}

@@ -1,0 +1,109 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{fullpage}
+
+
+\begin{document}
+\setlength\parindent{0pt}
+
+\textbf{STAT 310, HW 2}\\
+\textbf{Due}: Thursday, February 16\\
+
+\textbf{Directions:} Please submit your completed assignment to Canvas in PDF format.\\
+
+\textbf{Exercise 1}.  Describe the distributions in the histograms below and match them to the box plots.\\ 
+
+\includegraphics[width=\textwidth]{figure/hist_box_match.pdf}
+\medskip
+
+\textbf{Exercise 2}.  For each  scatter plot below indicate whether there is a positive association, negative association, or no association.  Also determine if the positive or negative association is linear or nonlinear.\\  
+
+\includegraphics[width=\textwidth]{figure/association_plots.pdf}
+\medskip
+
+\textbf{Exercise 3}.  Without doing an calculations, determine which set has the larger standard deviation. Briefly explain your reasoning, and then use R to verify.\\
+
+Set A: 3,5,5,5,8,11,11,11,13\\
+Set B: 3,5,5,5,8,11,11,11,20\\
+
+\textbf{Exercise 4}.  Without doing an calculations, determine which set has the larger standard deviation. Briefly explain your reasoning, and then use R to verify.\\
+
+Set A: 100, 200, 300, 400, 500\\
+Set B: 0, 50, 300, 550, 600\\
+\newpage
+
+\textbf{Exercise 5}.  Hearing anecdotal reports that some patients undergoing treatment for the eating disorder anorexia seemed to be responding positively to the antidepressant Prozac, medical researchers conducted an experiment to investigate.  They found 93 women being treated for anorexia who volunteered to participate.  For one year, 49 randomly selected patients were treated with Prozac and the other 44 were given an inert substance called a placebo.  At the end of the year, patients were diagnosed as healthy or relapsed, as summarized in the contingency table:\\     
+
+\begin{tabular}{l|ll|l}
+ & Prozac & Placebo & Total\\
+\hline
+Healthy & 35 & 32 & 67\\
+Relapse & 14 & 12 & 26\\
+\hline
+Total & 49 & 44 & 93\\
+\end{tabular}
+
+\begin{enumerate}[(a)]
+\item Is this an experimental or observational study?
+\item What percent of patients who received Prozac relapsed?
+\item What percent of patients who received the Placebo relapsed?
+\item Do these results provide evidence that Prozac might be helpful in treating anorexia?  Explain.\\
+\end{enumerate}
+
+\textbf{Exercise 6}.  A random sample of registered voters from Tampa, FL were asked if they support the DREAM Act, a proposed law which would provide a path to citizenship for people brought illegally to the US as children. The survey also collected information on the political ideology of the respondents.\\
+
+\includegraphics[scale = 0.9]{figure/barplot_dream.pdf}
+
+\begin{enumerate}[(a)]
+\item Based on the standardized bar plot, approximately what proportion of conservative respondents supported the Dream Act?  
+\item Approximately what proportion of liberal respondents supported the Dream Act?
+\item Does there appear to be an association between views on the Dream Act and political ideology, or are they independent?  Explain.
+\end{enumerate}
+
+
+\textbf{Exercise 7}.  The histogram below shows the distribution of life expectancy in years for 142 countries in 2007. The data come from the website \url{www.gapminder.org}.
+
+\includegraphics[scale = 0.9]{figure/hist_life_exp.pdf}
+
+\begin{enumerate}[(a)]
+\item Describe the shape of of the distribution.
+\item Based on the histogram, would you expect the mean to be higher or lower than the median? 
+\item Approximately what percent of countries in this data set have life expectancy between 70-80 years.\\  
+\end{enumerate}
+
+\textbf{Exercise 8}.  Below is a box plot of life expectancy in years for 142 countries in 2007.
+
+\includegraphics[scale = 0.9]{figure/box_life_exp.pdf}
+
+\begin{enumerate}[(a)]
+\item Using the box plot, estimate $Q_1$, the median, $Q_3$, and the IQR.  Also, are there any potential outliers?
+\item What characteristics of the distribution are apparent in the histogram, but not in the box plot? 
+\end{enumerate}
+
+\newpage
+\textbf{Exercise 9}.  The histogram below shows the distribution of the GDP per capita (in US dollars) for 142 countries in 2007.\\  
+
+\includegraphics[scale = 0.8]{figure/hist_gdp.pdf}
+
+\begin{enumerate}[(a)]
+\item Describe the shape of of the distribution.
+\item Based on the histogram, would you expect the mean to be higher or lower than the median?\\
+\end{enumerate}
+
+\textbf{Exercise 10}.  Displayed below is a scatter plot of life expectancy (in years) versus GDP per capita (in US dollars) for 142 countries in 2007.  The points are colored according to the continent where each country is located.  Write a few sentences describing the relationship between the variables in the scatter plot.
+
+\includegraphics[scale = 0.9]{figure/scatter_life_gdp.pdf}
+
+
+
+
+
+
+\end{document}

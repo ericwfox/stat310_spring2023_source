@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{fullpage}
+
+
+\begin{document}
+\setlength\parindent{0pt}
+
+\textbf{STAT 310, HW 3}\\
+\textbf{Due:} Thursday, March 9\\
+
+\textbf{Reading:}  Sections 5.1 and 5.2 from \emph{OpenIntro}\\
+
+\textbf{Directions:} Please submit your completed assignment to Canvas in PDF format.\\
+
+\textbf{Exercise 1}. It is claimed that the population proportion of people who are left handed is $p=0.1$.  Suppose we take a random sample of $n=200$ people.
+\begin{enumerate}[(a)]
+\item What is the mean, or center, of the sampling distribution for $\hat{p}$?
+\item What is the standard error of the sampling distribution for $\hat{p}$?
+\item What distribution does $\hat{p}$ follow?
+\item Are the conditions for the Central Limit Theorem satisfied?
+\item What is the probability that the sample proportion $\hat{p}$ will be between 0.09 and 0.11 (that is, within 1\% of the population proportion)?\\
+\end{enumerate}
+
+\textbf{Exercise 2}.  The General Social Survey (GSS) is a major sociological survey on American demographics, and views on social and cultural issues. One question on the 2002 survey asked participants whether or not they believe in an afterlife.  Of the 1211 Americans who were randomly sampled to participate in the survey, 975 said that they believe in an afterlife.
+\begin{enumerate}[(a)]
+\item Calculate a 95\% confidence interval for the population proportion of Americans who believe in an afterlife.  Also interpret the interval in the context of the data.
+\item Are the conditions for constructing a confidence interval satisfied?
+\item Now calculate a 90\% confidence interval for the population proportion of Americans who believe in an afterlife.  Is this interval wider or narrower than the 95\% confidence interval?
+\item If a new survey is conducted with a larger random sample of about 4000 random Americans, would you expect the standard error to be larger, smaller, or about the same.  Explain.\\
+\end{enumerate}
+
+\textbf{Exercise 3}.  Referring to the previous exercise, suppose a new survey is being designed to estimate the proportion of Americans who believe in an afterlife.  How big of a sample size is needed so that a 95\% confidence interval has a $\pm 0.02$ margin of error?\\
+
+\textbf{Exercise 4}. Use the R function \texttt{qnorm()} to find the critical value $z^*$ for an 80\% confidence interval.
+
+
+ 
+
+
+\end{document}

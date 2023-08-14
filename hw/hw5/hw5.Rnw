@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\usepackage{url}
+
+\begin{document}
+\setlength\parindent{0pt}
+
+\textbf{STAT 310, HW 5}\\
+\textbf{Due}: Thursday, April 13\\
+
+\textbf{Directions}:  Please submit your completed assignment to Canvas in PDF format.\\
+
+\textbf{Reading:}  Section 7.1 from \emph{OpenIntro}\\
+
+\textbf{Exercise 1}.  Below are some summary statistics and a histogram of the heights (cm) of a random sample of $n=35$ adult men in the United States.  Calculate and interpret a 95\% confidence interval for the population mean $\mu$.  Also comment on whether the conditions for the interval appear satisfied.
+
+\begin{table}[ht]
+\begin{tabular}{lllll}
+\hline
+$n$ & $\bar{x}$ & s & min & max\\
+\hline
+35 & 174.8 & 6.65 & 158.7 & 190.5
+\end{tabular}
+\end{table}
+
+\includegraphics[scale=0.6]{height_hist.pdf}
+
+\vspace{10pt}
+\textbf{Exercise 2}.  Calculate the critical value $t^*$ for the given sample size and confidence level.
+\begin{enumerate}[(a)]
+\item $n=6$, CL$=90\%$
+\item $n=25$, CL$=95\%$
+\item $n=12$, CL$=99\%$\\
+\end{enumerate}
+
+
+\end{document}

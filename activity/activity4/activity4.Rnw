@@ -1,0 +1,41 @@
+\documentclass[fleqn, 12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{enumerate}
+
+\begin{document}
+\setlength\parindent{0pt}
+\textbf{Activity 4}\\
+STAT 310, Spring 2023\\
+
+\textbf{Exercise 1}.  Josh, a student in a statistics class, scored 85 points on the first exam and 80 points on the second exam. The mean score on the first exam for all students in this course was 79 with a standard deviation of 4.  The mean score on the second exam was 60 with a standard deviation of 10.  The distributions of both exam scores are approximately normal.
+\begin{enumerate}[(a)]
+\item What is Josh's $z$-score on the first exam?
+\vspace{1.5cm}
+% \[ z = \frac{x - \mu}{\sigma} = \frac{85 - 79}{4} = 1.5 \]
+
+\item What is Josh's $z$-score on the second exam?
+\vspace{1.5cm}
+% \[z = \frac{x - \mu}{\sigma} = \frac{80-60}{10} =2 \]
+
+\item On which exam did Josh do better when compared with other students in the class?
+\vspace{3cm}
+
+% \medskip
+% Josh did better on the second exam, relative to others, since his $z$-score is higher.  He scored 1.5 standard deviations above the mean for the first exam, and 2 standard deviations above the mean for the second exam.\\
+\end{enumerate}
+
+\textbf{Exercise 2}.  The following box plot shows the distribution of the number of hours spent working each week for a random sample of American adults.  Using the box plot, estimate the median and IQR. Are there any potential outliers in this data set? 
+
+\includegraphics[scale = 0.8]{boxplot_workhrs.pdf}
+
+% median = 40\\
+% IQR = $Q_3 - Q_1 = 50-35 =15$\\
+% Yes, there are potential outliers.
+
+
+
+\end{document}

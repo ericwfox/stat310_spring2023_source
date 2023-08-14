@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{enumerate}
+
+\begin{document}
+\setlength\parindent{0pt}
+\textbf{Activity 3}: Normal Distribution\\
+STAT 310, Spring 2023\\
+
+\textbf{Exercise 1}.  Suppose $Z \sim N(\mu = 0, \sigma = 1)$ is a random variable following a standard normal distribution.  Use the R function \texttt{pnorm()} to compute the following probabilities:
+\begin{enumerate}[(a)]
+\item $P(Z < 1.4)$\\
+
+\includegraphics[scale=0.5]{norm_draw.pdf}
+\vspace{1cm}
+
+\item $P(Z > 2.2)$
+
+\includegraphics[scale=0.5]{norm_draw.pdf}
+\vspace{1cm}
+
+\item $P(-0.5 < Z < 1.5)$
+
+\includegraphics[scale=0.5]{norm_draw.pdf}
+\vspace{1cm}
+\end{enumerate}
+
+\textbf{Exercise 2}.  Use the R function \texttt{qnorm()} to find 90th percentile of the standard normal distribution $N(\mu = 0, \sigma = 1)$.\\
+
+\includegraphics[scale=0.5]{norm_draw.pdf}
+\bigskip
+
+\newpage
+
+\textbf{Exercise 3}.  SAT scores are normally distributed with mean $\mu=1100$ and standard deviation $\sigma = 200$.  That is, $X \sim N(\mu = 1100, \sigma = 200)$
+\begin{enumerate}[(a)]
+\item About what percent of test takers score below a 750?\\
+\includegraphics[scale=0.6]{norm_draw.pdf}
+\vspace{1cm}
+
+\item About what percent of test takers score above a 1500?\\
+\includegraphics[scale=0.6]{norm_draw.pdf}
+\vspace{1cm}
+
+\item About what percent of test takers score between 800 and 1400?\\
+\includegraphics[scale=0.6]{norm_draw.pdf}
+\vspace{2cm}
+
+\item What is the cutoff for the highest 25\% of SAT scores (i.e., find the 75th percentile)?\\
+\includegraphics[scale=0.6]{norm_draw.pdf}
+
+\end{enumerate}
+
+\end{document}

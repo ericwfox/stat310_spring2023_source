@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{fullpage}
+
+\begin{document}
+\setlength\parindent{0pt}
+
+\textbf{STAT 310, HW 6}\\
+\textbf{Due:} Thursday, April 27\\
+
+\textbf{Directions}:  Please submit your completed assignment to Canvas in PDF format.\\
+
+\textbf{Reading:}  Section 8.1 and 8.2 from \emph{OpenIntro}\\
+
+\textbf{Exercise 1}. Match each correlation to the corresponding scatter plot.\\
+
+\medskip
+\begin{minipage}[c]{0.17\textwidth}
+\begin{enumerate}[(a)]
+\item $r = -0.7$
+\item $r = 0.45$ 
+\item $r = 0.06$
+\item $r = 0.92$
+\end{enumerate}\vspace{3mm}
+\end{minipage}%
+\begin{minipage}[c]{0.83\textwidth}
+\includegraphics[width=0.245\textwidth]{figure/match_corr_1_u.pdf}
+\includegraphics[width=0.245\textwidth]{figure/match_corr_2_strong_pos.pdf}
+\includegraphics[width=0.245\textwidth]{figure/match_corr_3_weak_pos.pdf}
+\includegraphics[width=0.245\textwidth]{figure/match_corr_4_weak_neg.pdf}
+\end{minipage}
+
+<<echo=F, eval=F>>=
+library(openintro)
+data("bac")
+lm1 <- lm(bac ~ beers, data = bac)
+summary(lm1)
+
+pdf("figure/scatter_beers.pdf", width = 5, height = 4)
+par(mar=c(4.5, 4.5, 2, 2)) # adjust margins and font size
+plot(bac ~ beers, data = bac, 
+     xlab="Cans of beer", ylab="BAC (grams /  deciliter)",
+     xlim = c(0, 10), ylim = c(0, 0.2))
+abline(lm1)
+dev.off()
+@
+
+\vspace{10pt}
+\textbf{Exercise 2}.  Many people believe that gender, weight, drinking habits, and many other factors are much more important in predicting blood alcohol content (BAC) than simply considering the number of drinks a person consumed. Here we examine data from sixteen student volunteers at Ohio State University who each drank a randomly assigned number of cans of beer. These students were evenly divided between men and women, and they differed in weight and drinking habits. Thirty minutes later, a police officer measured their blood alcohol content (BAC) in grams of alcohol per deciliter of blood.\\  
+
+Below is the output from fitting a linear regression model to this data in R.  A scatter plot with the least squares line is also displayed.
+
+\begin{figure}[ht]
+\includegraphics[scale=0.8]{figure/scatter_beers.pdf}
+\end{figure}
+
+\newpage
+
+\begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.012701   0.012638  -1.005    0.332    
+beers        0.017964   0.002402   7.480 2.97e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.02044 on 14 degrees of freedom
+Multiple R-squared:  0.7998,	Adjusted R-squared:  0.7855 
+F-statistic: 55.94 on 1 and 14 DF,  p-value: 2.969e-06
+\end{verbatim}
+
+\vspace{10pt}
+\begin{enumerate}[(a)]
+\item Describe the association between number of cans of beer and BAC.
+\item What are the explanatory and response variables for the linear regression model?
+\item Write the equation for the least squares line.
+\item Interpret the slope.
+\item Interpret the intercept.
+\item What is the predicted BAC for a person that drank 5 cans of beer?
+\item A student in this data set drank 9 beers and had a measured BAC of 0.19. Calculate the residual for this student. %student 3
+\item Interpret the $R^2$.
+\end{enumerate}
+
+
+\end{document}

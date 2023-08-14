@@ -1,0 +1,43 @@
+\documentclass[11pt, fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{fullpage}
+
+\begin{document}
+\setlength\parindent{0pt}
+\textbf{Activity 1}\\
+STAT 310, Spring 2023\\
+
+\textbf{Exercise 1}.  Indicate whether each of the following variables are numerical or categorical.
+\begin{enumerate}[(a)]
+\item A person's eye color
+\item A person's weight
+\item A person's political party affiliation (democrat, republican, independent)
+%\item The number of hours a person usually spends exercising each week
+\item Score (out of 100 points) on an exam
+\item Zip code\\
+\end{enumerate} 
+
+\textbf{Exercise 2}. The General Social Survey asked the question, ``After an average work day, about how many hours do you have to relax or pursue activities that you enjoy?" to a random sample of 1,155 American adults. The average relaxing time was found to be 1.65 hours. Determine which of the following is the sample, population, statistic, or parameter.
+\begin{enumerate}[(a)]
+\item Average number of hours all American adults spend relaxing after an average 
+work day.
+\item 1.65 hours
+\item All Americans adults
+\item 1,155 American adults\\
+\end{enumerate}
+
+\textbf{Exercise 3}.  For each of the following scenarios, identify whether the study is an observational study or experimental study.   
+\begin{enumerate}[(a)]
+\item Researchers surveyed 959 ninth graders who attended 3 large US urban high schools and found that those who listened to music that had references to marijuana were almost twice as likely to of used marijuana than those who did not listen to music with references to marijuana.   
+\item Is diet effective at combating insomnia?  Some believe that cutting out desserts can help alleviate the problem.  Forty volunteers suffering from insomnia agreed to participate in a month-long study.  Half were randomly assigned to a special no-dessert diet; the others continued desserts as usual.  Those who ate no dessert showed the most improvement. 
+\item The journal \emph{Circulation} reported that among 1900 people who had heart attacks, those who drank an average of 19 cups of tea a week were 44\% more likely than non-drinkers to survive at least 3 years after the attack.
+\end{enumerate} 
+
+\end{document}

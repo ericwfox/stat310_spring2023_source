@@ -1,0 +1,38 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+fontsize: 12pt
+---
+**Lab 2 Assignment, STAT 310**\
+**Due**: Thursday, February 9\
+
+**Directions**:  Your answers should be formatted using a word processor (e.g., Microsoft Word, Google Docs).  For each exercise, copy and paste all the code, output, and graphs from RStudio to your document.  Then convert your final document to PDF format.  **Your submission to Canvas must be in PDF format.**\
+
+Exercises in this lab assignment will use the `nhanes` data set.  To load this data set into R run the following command:
+```{r}
+nhanes <- readRDS(url("https://ericwfox.github.io/data/nhanes.rds"))
+```
+
+\medskip
+
+**Exercise 1.**  Compute some summary statistics, and make a histogram and box plot of the variable `Weight`.  Describe distribution of `Weight` in terms of its shape, center, and spread.  
+
+\medskip
+
+**Exercise 2.**  Compute some summary statistics and make a histogram of the variable `HHIncome`.  Describe distribution of `HHIncome` in terms of its shape, center, and spread. 
+
+\medskip
+
+**Exercise 3.** Make a frequency table and bar plot of the variable `Smoke100`.  Based on this, what proportion of respondents have smoked over 100 cigarettes?
+
+\medskip
+
+**Exercise 4.** Make a scatter plot with `BPSysAve` on the $y$-axis, and `BPDiaAve` on the $x$-axis.  Label the $y$-axis "Systolic Blood Pressure", and label the $x$-axis "Diastolic Blood Pressure".  Describe the relationship between the variables in the scatter plot.  
+
+\medskip
+
+**Exercise 5.** Make side-by-side box plots of `HHIncome` across the categories of `Education`.  Do you notice any trend or association in the plot? Are there any outliers?  [Hint: your graph should contain 5 box plots, one for each category of `Education`]
+
+
+

@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{enumerate}
+
+\begin{document}
+\setlength\parindent{0pt}
+
+<<eval=F, echo=F>>=
+library(Stat2Data)
+data("AccordPrice")
+
+lm1 <- lm(Price ~ Mileage, data = AccordPrice)
+summary(lm1)
+
+pdf("figure/scatter_cars.pdf", width = 5, height = 4)
+par(mar=c(4.5, 4.5, 2, 2))
+plot(Price ~ Mileage, data = AccordPrice)
+abline(lm1)
+dev.off()
+
+predict(lm1, data.frame(Mileage = 50))
+
+min(resid(lm1))
+which.min(resid(lm1))
+AccordPrice[7, ]
+predict(lm1)[7]
+3.5 - 10.09842 
+@
+
+
+\textbf{Activity 8}: Simple Linear Regression\\
+STAT 310, Spring 2023\\
+
+The following scatter plot shows the association between price (in \$1,000s) and mileage (number of miles driven in 1,000s) for a sample of 30 used Honda Accords in 2017.  Also provided below is the output from fitting a simple linear regression model in R.\\
+
+\begin{figure}[ht]
+\includegraphics[scale=0.75]{scatter_cars.pdf}
+\end{figure}
+
+\begin{verbatim}
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  20.8096     0.9529   21.84  < 2e-16 ***
+Mileage      -0.1198     0.0141   -8.50 3.06e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.085 on 28 degrees of freedom
+Multiple R-squared:  0.7207,	Adjusted R-squared:  0.7107 
+F-statistic: 72.25 on 1 and 28 DF,  p-value: 3.055e-09
+\end{verbatim}
+\vspace{2pt}
+
+\begin{enumerate}[(a)]
+\item Describe the association between price and mileage.\\
+\vspace{0.75cm}
+
+\item What are the explanatory and response variables for the linear regression model?\\
+\vspace{1.5cm}
+
+\item Write the equation for the least squares line.\\
+\vspace{1.5cm}
+
+\item What is the predicted price for a used Honda Accord that has been driven 50 thousand miles?\\ 
+\vspace{1.5cm}
+
+\item Interpret the slope.\\
+\vspace{3cm}
+
+\item Interpret the intercept.\\
+\vspace{3cm}
+
+\item Calculate the residual for a car, in this data set, that costs 3.5 thousand dollars, and has been driven 89.4 thousand miles.\\ 
+\vspace{3cm}
+
+\item Interpret the R$^2$.\\
+\end{enumerate}
+
+
+\end{document}

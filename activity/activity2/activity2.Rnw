@@ -1,0 +1,68 @@
+\documentclass[11pt, fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{fullpage}
+
+\begin{document}
+\setlength\parindent{0pt}
+\textbf{Activity 2}: Summarizing and Displaying Categorical Data\\
+STAT 310, Spring 2023\\
+
+Below is a contingency table between the variables \texttt{Smoke100} and \texttt{HealthGen}, from the NHANES data set (lab 2).  A contingency table of column proportions is also provided.    
+
+<<echo = F>>=
+nhanes = readRDS(url("https://ericwfox.github.io/data/nhanes.rds"))
+# addmargins(table(nhanes$Smoke100, nhanes$HealthGen))
+# round(prop.table(table(nhanes$Smoke100, nhanes$HealthGen), margin = 2), 3)
+@
+
+\small
+\begin{verbatim}
+> nhanes = readRDS(url("https://ericwfox.github.io/data/nhanes.rds"))
+> addmargins(table(nhanes$Smoke100, nhanes$HealthGen))
+      Excellent Vgood Good Fair Poor  Sum
+  No        122   282  328  104   15  851
+  Yes        50   188  282  109   20  649
+  Sum       172   470  610  213   35 1500
+  
+> prop.table(table(nhanes$Smoke100, nhanes$HealthGen), margin = 2)
+      Excellent Vgood  Good  Fair  Poor
+  No      0.709 0.600 0.538 0.488 0.429
+  Yes     0.291 0.400 0.462 0.512 0.571
+\end{verbatim}
+
+<<echo = FALSE, fig.width = 5, fig.height = 2>>=
+library(ggplot2)
+ggplot(data = nhanes) +
+  geom_bar(aes(x=HealthGen, fill=Smoke100), position = "fill") +
+  ylab("proportion") + 
+  scale_fill_manual(values = c("lightgray", "darkgrey")) +
+  theme_bw() +
+  ggtitle("Standardized Bar Plot")
+@
+
+\begin{enumerate}[(a)]
+\item  What proportion of respondents have smoked at least 100 cigarettes in their lifetime?
+\vspace{1cm}
+\item What proportion of respondents have smoked at least 100 cigarettes \textbf{and} are in good health?
+\vspace{1cm}
+\item What does 0.291 represent in the contingency table of column proportions?
+\vspace{1.5cm}
+\item What does 0.571 represent in the contingency table of column proportions?
+\vspace{1.5cm}
+\item Do the variables \texttt{Smoke100} and \texttt{HeathGen} appear to be associated?
+\end{enumerate}
+
+
+
+
+
+
+
+\end{document}

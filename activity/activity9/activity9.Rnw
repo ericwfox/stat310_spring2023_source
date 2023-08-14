@@ -1,0 +1,56 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{enumerate}
+
+\begin{document}
+\setlength\parindent{0pt}
+
+\textbf{Activity 9}: Inference for Simple Linear Regression\\
+STAT 310, Spring 2023\\
+
+<<eval=F, echo=F>>=
+library(Stat2Data)
+data("AccordPrice")
+
+lm1 <- lm(Price ~ Mileage, data = AccordPrice)
+summary(lm1)
+
+pdf("figure/resid.pdf", width = 7, height = 3.5)
+par(mfrow = c(1,2), mar=c(4.5, 4.5, 2, 2))
+plot(AccordPrice$Mileage, resid(lm1), xlab = "Mileage", ylab = "Residuals")
+abline(h=0)
+hist(resid(lm1), xlab = "Residuals", main = "")
+dev.off()
+@
+
+\textbf{Exercise 1}.  The following scatter plot shows the association between price (in \$1,000s) and mileage (number of miles driven in 1,000s) for a random sample of 30 used Honda Accords in 2017.  Also provided below is the output from fitting a simple linear regression model in R.\\
+
+\includegraphics[scale=0.5]{figure/scatter_cars.pdf}
+
+\begin{verbatim}
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  20.8096     0.9529   21.84  < 2e-16 ***
+Mileage      -0.1198     0.0141   -8.50 3.06e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 
+\end{verbatim}
+
+\begin{enumerate}[(a)]
+\item Do the data provide strong evidence of a linear association between the price of the used cars and the number of miles driven, i.e., is the slope of the regression line significantly different than 0? State the null and alternative hypothesis, report the test statistic and $p$-value, and state your conclusion. 
+\vspace{3.5cm}
+\item Calculate a 95\% confidence interval for the slope parameter $\beta_1$.
+\vspace{3.5cm}
+\item Do the results from the hypothesis test and confidence interval agree?  Explain.
+\newpage
+\item Below is a plot of the residuals versus mileage, and a histogram of the residuals.  Based on these plots, do the conditions for simple linear regression appear satisfied?  
+
+\includegraphics[scale=0.7]{figure/resid.pdf}
+\end{enumerate}
+
+
+\end{document}

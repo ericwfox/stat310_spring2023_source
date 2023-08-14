@@ -1,0 +1,31 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+fontsize: 12pt
+---
+**Lab 3 Assignment, STAT 310**\
+Due: Thursday, April 20\
+
+**Directions**:  Your answers should be formatted using a word processor (e.g., Microsoft Word, Google Docs).  For each exercise, copy and paste all the code, output, and graphs from RStudio to your document.  Then convert your final document to PDF format.  **Your submission to Canvas must be in PDF format.**\
+
+This lab assignment will use the `ncbirths` data set from the `openintro` library:
+```{r, eval = FALSE}
+library(openintro)
+```
+
+
+## Exercise 1
+
+(a) Make side-by-side box plots for `weight` and `premie`.  Note that the numerical variable `weigth` is the birth weight of the baby in pounds, and the categorical variable `premie` indicates whether the birth was premature or full-term.  Based on this plot is the median birth weight higher for babies born full-term or babies born premature?
+
+```{r, eval = F, echo = F}
+boxplot(weight ~ premie, data = ncbirths)
+```
+
+
+(b) Use the `table()` function to count the number of births that were permature and full-term.
+
+(c)  Use the `t.test()` function to perform a hypothesis test to determine whether there is a statistically significant difference between the mean birth weights of babies born full-term and babies born premature.  State the null and alternative hypothesis and your conclusion based on the $p$-value.  Also comment on whether the conditions for the test are satisfied.
+
+(d) Interpret the 95\% confidence interval for the difference between the two population means.  (You don't need to run any additional code here since the confidence interval was already computed in part c; just write a sentence or two with your interpretation.) 

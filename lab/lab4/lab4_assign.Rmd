@@ -1,0 +1,33 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+fontsize: 12pt
+---
+**Lab 4 Assignment, STAT 310**\
+**Due**: Thursday, May 4\
+
+**Directions**:  Your answers should be formatted using a word processor (e.g., Microsoft Word, Google Docs).  For each exercise, copy and paste all the code, output, and graphs from RStudio to your document.  Then convert your final document to PDF format.  **Your submission to Canvas must be in PDF format.**\
+
+
+Exercises in this lab assignment will use the `nhanes` data set.  To load this data set into R run the following command:
+```{r}
+nhanes = readRDS(url("https://ericwfox.github.io/data/nhanes.rds"))
+```
+
+\smallskip
+
+**Exercise 1** 
+
+(a) Use the `lm()` function to fit a simple linear regression model with `Weight` as the response variable, and `Height` as the explanatory variable.  Use the `summary()` function to print the results.
+
+(b) Make a scatter plot with `Weight` (in kg) on the $y$-axis and `Height` (in cm) on the $x$-axis.  Use `abline()` to add the least squares line.  Does the relationship between the two variables appear to be linear?
+
+(c)  Write the equation of the least squares line.  What is the predicted weight of a person who is 175 cm tall? 
+
+(d) Interpret the $R^2$.
+
+(e) Make a plot of the residuals versus values of the explanatory variable (`Height`).  Based on this plot, does the condition of constant variability appear satisfied?
+
+(f)  Make a histogram of the residuals. Do the residuals appear normally distributed?
+
